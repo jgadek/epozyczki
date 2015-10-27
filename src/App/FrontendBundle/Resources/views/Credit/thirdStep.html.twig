@@ -1,0 +1,157 @@
+{% extends "::base.html.twig" %}
+{% block body %}
+<div class="section">
+    <div class="container">
+        <div class="header">Kreator pożyczki</div>
+        <div class="header-description">Wypełnij formularz - <span>to zajmie tylko 5 minut</span></div>
+        <div class="section-content">
+            <div class="section-content-steps" id="get-loan-steps">
+                <div class="section-content-steps-column">
+                    <div class="section-content-steps-column-content" onClick="location.href = '{{ url('app_frontend_credit_firstStep') }}'">
+                        <div class="section-content-steps-column-content-circle-background"><div class="section-content-steps-column-content-circle-number">1</div></div>
+                        <div class="section-content-steps-column-content-text">Określ potrzeby</div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+                <div class="section-content-steps-column" onClick="location.href = '{{ url('app_frontend_credit_secondStep') }}'">
+                    <div class="section-content-steps-column-content">
+                        <div class="section-content-steps-column-content-circle-background"><div class="section-content-steps-column-content-circle-number">2</div></div>
+                        <div class="section-content-steps-column-content-text">Podaj szczegóły</div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+                <div class="section-content-steps-column active" onClick="location.href = '{{ url('app_frontend_credit_thirdStep') }}'">
+                    <div class="section-content-steps-column-content">
+                        <div class="section-content-steps-column-content-circle-background"><div class="section-content-steps-column-content-circle-number">3</div></div>
+                        <div class="section-content-steps-column-content-text">Twoje dane</div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+                <div class="section-content-steps-column" onClick="location.href = '{{ url('app_frontend_credit_fourthStep') }}'">
+                    <div class="section-content-steps-column-content">
+                        <div class="section-content-steps-column-content-circle-background"><div class="section-content-steps-column-content-circle-number">4</div></div>
+                        <div class="section-content-steps-column-content-text">Wyślij wniosek</div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="clear"></div>
+            <div class="section-content-wrapper" id="get-loan-creator">
+                {{ form_start(form) }}
+                <div class="section-content-wrapper-biggerBox">
+                    <div class="section-content-wrapper-top">
+                        <div class="section-content-wrapper-top-header">Twoje dane: <span>nie będą publicznie dostępne</span></div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="equalBox">
+                        <div class="form">
+                            <div class="form-inputBox-radioBox">{{ form_widget(form.intTypeOfPerson[0], {'id': 'OF'}) }}<label for="OF"><span></span>Osoba fizyczna</label></div>
+                            <div class="form-inputBox-input">{{ form_widget(form.strFirstName) }}</div>
+                            <div class="form-inputBox-input">{{ form_widget(form.strSecondName) }}</div>
+                            <div class="form-inputBox-input">{{ form_widget(form.strLastName) }}</div>
+                            <div class="form-inputBox-input">{{ form_widget(form.strPesel) }}</div>
+                            <div class="form-inputBox-input">{{ form_widget(form.strEdg) }}</div>
+                            <div class="form-inputBox-input">{{ form_widget(form.strIdNumber) }}</div>
+                            <div class="form-inputBox-input">{{ form_widget(form.strAddress) }}</div>
+                            <div class="form-inputBox-input">{{ form_widget(form.strPostCode) }}</div>
+                            <div class="form-inputBox-input">{{ form_widget(form.strCity) }}</div>
+                            <div class="form-inputBox-input">{{ form_widget(form.strPhone) }}</div>
+                            <div class="form-inputBox-input">{{ form_widget(form.strFacebookAddress) }}</div>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                    <div class="equalBox">
+                        <div class="form">
+                            <div class="form-inputBox-radioBox">{{ form_widget(form.intTypeOfPerson[1], {'id': 'OP'}) }}<label for="OP"><span></span>Osoba prawna</label></div>
+                            <div class="form-inputBox-input">{{ form_widget(form.strFirstName2) }}</div>
+                            <div class="form-inputBox-input">{{ form_widget(form.strSecondName2) }}</div>
+                            <div class="form-inputBox-input">{{ form_widget(form.strLastName2) }}</div>
+                            <div class="form-inputBox-input">{{ form_widget(form.strPesel2) }}</div>
+                            <div class="form-inputBox-input">{{ form_widget(form.strEdg2) }}</div>
+                            <div class="form-inputBox-input">{{ form_widget(form.strIdNumber2) }}</div>
+                            <div class="form-inputBox-input">{{ form_widget(form.strAddress2) }}</div>
+                            <div class="form-inputBox-input">{{ form_widget(form.strPostCode2) }}</div>
+                            <div class="form-inputBox-input">{{ form_widget(form.strCity2) }}</div>
+                            <div class="form-inputBox-input">{{ form_widget(form.strPhone2) }}</div>
+                            <div class="form-inputBox-input">{{ form_widget(form.strFacebookAddress2) }}</div>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                {% if not app.user %}
+                <div class="section-content-wrapper-smallerBox">
+                    <div class="section-content-wrapper-top">
+                        <div class="section-content-wrapper-top-header">Twoje konto w systemie:</div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="fullBox">
+                        <div class="form">
+                            <div class="form-inputBox-input">{{ form_widget(form.username) }}</div>
+                            <div class="form-inputBox-input">{{ form_widget(form.email) }}</div>
+                            <div class="form-inputBox-input">{{ form_widget(form.password) }}</div>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                <div class="clear"></div>
+                <div class="buttons-wrapper">
+                    <div class="buttons-wrapper-button left">
+                        <a href="{{ url('app_frontend_credit_secondStep') }}"><div class="whiteButton">Wstecz</div></a>
+                    </div>
+                    <div class="buttons-wrapper-button right">
+                        <input type="submit" class="darkButton" value="Dalej">
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="push"></div>
+{% endblock %}
+{% block javascripts %}
+<script type="text/javascript">
+    $(function() {
+        $('.form-inputBox-radioBox input[type="radio"]').click(function() {
+            toogleDivs($(this));
+            $('*[data-required="true"]').attr('required', true).removeAttr('required');
+            $(this).parent().parent().find('*[data-required="true"]').attr('required', true);
+        });
+
+        if (parseInt($('.form-inputBox-radioBox input[type="radio"]:checked').val()) === 1) {
+            toogleDivs($('#OF'));
+        } else {
+            toogleDivs($('#OP'));
+        }
+
+        function toogleDivs($t) {
+            var $other, $activeDiv;
+            $name = $t.attr('id');
+            $activeDiv = $t.parent().parent().parent();
+            if ($name === 'OF') {
+                $other = $activeDiv.next('div');
+            } else {
+                $other = $activeDiv.prev('div');
+            }
+
+            $other.find('.form').children('div').each(function(index) {
+                if (index !== 0) {
+                    $(this).find('input').val('');
+                    $(this).hide();
+                }
+            });
+
+            $activeDiv.find('.form').children('div').each(function(index) {
+                if (index !== 0) {
+                    $(this).show();
+                }
+            });
+        }
+    });
+</script>
+{% endblock %}

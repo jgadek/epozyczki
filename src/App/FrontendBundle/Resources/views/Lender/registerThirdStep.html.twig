@@ -1,0 +1,237 @@
+{% extends "::base.html.twig" %}
+{% block body %}
+<div class="section">
+    <div class="container">
+        <div class="header">ZOSTAŃ POŻYCZKODAWCĄ</div>
+        <div class="header-description">Wypełnij formularz - <span>to zajmie tylko 5 minut</span></div>
+        <div class="section-content">
+            <div class="section-content-steps" id="give-loan-steps">
+                <div class="section-content-steps-column">
+                    <div class="section-content-steps-column-content">
+                        <div class="section-content-steps-column-content-circle-background"><div class="section-content-steps-column-content-circle-number">1</div></div>
+                        <div onClick="location.href = '{{ url('app_frontend_lender_registerFirstStep') }}'" class="section-content-steps-column-content-text">Warunki pożyczkodawcy</div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+                <div class="section-content-steps-column">
+                    <div class="section-content-steps-column-content">
+                        <div class="section-content-steps-column-content-circle-background"><div class="section-content-steps-column-content-circle-number">2</div></div>
+                        <div onClick="location.href = '{{ url('app_frontend_lender_registerSecondStep') }}'" class="section-content-steps-column-content-text">Twoje dane</div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+                <div class="section-content-steps-column active">
+                    <div class="section-content-steps-column-content">
+                        <div class="section-content-steps-column-content-circle-background"><div class="section-content-steps-column-content-circle-number">3</div></div>
+                        <div onClick="location.href = '{{ url('app_frontend_lender_registerThirdStep') }}'" class="section-content-steps-column-content-text">Wyślij wniosek</div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="clear"></div>
+            <div class="section-content-wrapper" id="get-loan-creator-step-4">
+                {{ form_start(form) }}
+                <div class="section-content-wrapper-biggerBox">
+                    <div class="section-content-wrapper-top">
+                        <div class="section-content-wrapper-top-header">Warunki pożyczkodawcy:</div>
+                        <a href="{{ url('app_frontend_lender_registerFirstStep') }}"><div class="btn-edit">popraw</div></a>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="summation">
+                        <div class="summation-row big">
+                            <div class="summation-row-label">Oferuję udzielenie pożyczki w przedziale:</div>
+                            <div class="summation-row-description">od {{ lender.intCreditAmountFromLabel }} do {{ lender.intCreditAmountToLabel }} PLN</div>
+                        </div>
+                        <div class="summation-row big">
+                            <div class="summation-row-label">Maksymalny okres spłaty pożyczki:</div>
+                            <div class="summation-row-description">{{ lender.intRepaymentTimeTo }} mc</div>
+                        </div>
+                        <div class="summation-row big">
+                            <div class="summation-row-label">Wymagane zabezpieczenie:</div>
+                            <div class="summation-row-description">{{ lender.requiredSecurity|raw }}</div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+                <div class="section-content-wrapper-smallerBox">
+                    <div class="section-content-wrapper-top">
+                        <div class="section-content-wrapper-top-header">Twoje konto:</div>
+                        <a href="{{ url('app_frontend_lender_registerSecondStep') }}"><div class="btn-edit">popraw</div></a>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="summation">
+                        <div class="summation-row">
+                            <div class="summation-row-label">nick:</div>
+                            <div class="summation-row-description">{{ lender.username }}</div>
+                        </div>
+                        <div class="summation-row">
+                            <div class="summation-row-label">e-mail:</div>
+                            <div class="summation-row-description">{{ lender.email }}</div>
+                        </div>
+                        <div class="summation-row">
+                            <div class="summation-row-label">hasło:</div>
+                            <div class="summation-row-description">{{ lender.passwordHidden }}</div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+                <div class="clear"></div>
+                <div class="section-content-wrapper-biggerBox">
+                    <div class="section-content-wrapper-top">
+                        <div class="section-content-wrapper-top-header">Twoje dane:</div>
+                        <a href="{{ url('app_frontend_lender_registerSecondStep') }}"><div class="btn-edit">popraw</div></a>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="summation">
+                        <div class="summation-row">
+                            <div class="summation-row-label green">{{ lender.intTypeOfPersonLabel }}</div>
+                            <div class="summation-row-description"></div>
+                        </div>
+                        {% if lender.intTypeOfPersonIsLegal %}
+                        <div class="summation-row">
+                            <div class="summation-row-label">Nazwa firmy:</div>
+                            <div class="summation-row-description">{{ lender.strNameOfCorporationLegal }}</div>
+                        </div>
+                        <div class="summation-row">
+                            <div class="summation-row-label">Reprezentant:</div>
+                            <div class="summation-row-description">{{ lender.strRepresentativeLegal }}</div>
+                        </div>
+                        <div class="summation-row">
+                            <div class="summation-row-label">KRS lub nr wpisu EDG:</div>
+                            <div class="summation-row-description">{{ lender.strKrsOrEdgLegal }}</div>
+                        </div>
+                        <div class="summation-row">
+                            <div class="summation-row-label">NIP:</div>
+                            <div class="summation-row-description">{{ lender.strNipLegal }}</div>
+                        </div>
+                        <div class="summation-row">
+                            <div class="summation-row-label">REGON:</div>
+                            <div class="summation-row-description">{{ lender.strRegonLegal }}</div>
+                        </div>
+                        <div class="summation-row">
+                            <div class="summation-row-label">Adres siedziby:</div>
+                            <div class="summation-row-description">{{ lender.strAddressLegal }}</div>
+                        </div>
+                        <div class="summation-row">
+                            <div class="summation-row-label">Kod pocztowy</div>
+                            <div class="summation-row-description">{{ lender.strPostCodeLegal }}</div>
+                        </div>
+                        <div class="summation-row">
+                            <div class="summation-row-label">Miejscowość</div>
+                            <div class="summation-row-description">{{ lender.strCityLegal }}</div>
+                        </div>
+                        <div class="summation-row">
+                            <div class="summation-row-label">Telefon</div>
+                            <div class="summation-row-description">{{ lender.strPhoneLegal }}</div>
+                        </div>
+                        {% else %}
+                        <div class="summation-row">
+                            <div class="summation-row-label">Imiona i nazwiska:</div>
+                            <div class="summation-row-description">{{ lender.strFirstNameNatural }} {{ lender.strSecondNameNatural }} {{ lender.strLastNameNatural }}</div>
+                        </div>
+                        <div class="summation-row">
+                            <div class="summation-row-label">PESEL:</div>
+                            <div class="summation-row-description">{{ lender.strPeselNatural }}</div>
+                        </div>
+                        <div class="summation-row">
+                            <div class="summation-row-label">Nr dowodu osobistego:</div>
+                            <div class="summation-row-description">{{ lender.strIdNumberNatural }}</div>
+                        </div>
+                        <div class="summation-row">
+                            <div class="summation-row-label">Adres zamieszkania:</div>
+                            <div class="summation-row-description">{{ lender.strAddressNatural }}</div>
+                        </div>
+                        <div class="summation-row">
+                            <div class="summation-row-label">Kod pocztowy:</div>
+                            <div class="summation-row-description">{{ lender.strPostCodeNatural }}</div>
+                        </div>
+                        <div class="summation-row">
+                            <div class="summation-row-label">Miejscowość:</div>
+                            <div class="summation-row-description">{{ lender.strCityNatural }}</div>
+                        </div>
+                        <div class="summation-row">
+                            <div class="summation-row-label">Telefon</div>
+                            <div class="summation-row-description">{{ lender.strPhoneNatural }}</div>
+                        </div>
+                        {% endif %}
+                        <div class="clear"></div>
+                    </div>
+                </div>
+                <div class="section-content-wrapper-smallerBox">
+                    <div class="section-content-wrapper-top">
+                        <div class="section-content-wrapper-top-header">Akceptacja warunków:</div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="fullBox">
+                        <div class="form-inputBox-checkboxBox">{{ form_widget(form.acceptConditions) }}<label for="{{ form.vars.name }}_{{ form.acceptConditions.vars.name }}"><span></span>Akceptuję regulamin</label></div>
+                        <div class="form-inputBox-checkboxBox">{{ form_widget(form.acceptPersonalData) }}<label for="{{ form.vars.name }}_{{ form.acceptPersonalData.vars.name }}"><span></span>Wyrażam zgodę na przetwarzanie moich danych</label></div>
+                        <div class="form-inputBox-checkboxBox">{{ form_widget(form.acceptPricing) }}<label for="{{ form.vars.name }}_{{ form.acceptPricing.vars.name }}"><span></span>Zapoznałem się z warunkami serwisu i cennikiem</label></div>
+                    </div>
+                </div>
+                <div class="clear"></div>
+                <div class="section-additional-info">
+                    <div class="header small">PO WYSŁANIU TWÓJ WNIOSEK ZOSTANIE WYSŁANY DO POŻYCZKOBIORCÓW</div>
+                    <div class="header-description">Zostaniesz poinformowany o ofertach dla Ciebie. <span>Będziesz mógł wybrać najkorzystniejszą ofertę.</span></div>
+                </div>
+                <div class="clear"></div>
+                <div class="buttons-wrapper">
+                    <div class="buttons-wrapper-button left">
+                        <div class="whiteButton">Wstecz</div>
+                    </div>
+                    <div class="buttons-wrapper-button right">
+                        <input type="submit" class="darkButton" value="Wyślij wniosek">
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="push"></div>
+{% endblock %}
+{% block javascripts %}
+<script type="text/javascript">
+    $(function() {
+
+        function generate(text, type) {
+            var n = noty({
+                text: text,
+                type: type,
+                dismissQueue: true,
+                layout: 'topLeft',
+                closeWith: ['click'],
+                theme: 'relax',
+                maxVisible: 10,
+                animation: {
+                    open: 'animated bounceInLeft',
+                    close: 'animated bounceOutLeft',
+                    easing: 'swing',
+                    speed: 500
+                }
+            });
+            console.log('html: ' + n.options.id);
+        }
+
+        $('form').submit(function() {
+            $isValid = true;
+            $("input:checkbox:not(:checked)").each(function() {
+                $isValid = false;
+                generate('<div class="activity-item"> <i class="fa fa-exclamation-triangle text-danger"></i> <div class="activity"> ' + $(this).data('error') + ' </div> </div>', 'warning');
+            });
+            if ($isValid === false) {
+                return false;
+            }
+
+        });
+        function generateAll() {
+        {% for error in lender.errors %}
+            generate('<div class="activity-item"> <i class="fa fa-exclamation-triangle text-danger"></i> <div class="activity"> {{ error }} </div> </div>', 'error');
+        {% endfor %}
+        }
+        generateAll();
+    });
+</script>
+{% endblock %}

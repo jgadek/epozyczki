@@ -1,0 +1,90 @@
+{% if browser.pages > 0 %}
+<div style='padding-top: 10px;' class="">
+    <div class="buttons-wrapper">
+        {% if browser.page != 1 %}
+        <div class="buttons-wrapper-button left">
+            <a id="pagination-prev-page" href="javascript:void(0)"><div class="whiteButton">Poprzednie wyniki</div></a>
+        </div>
+        {% endif %}
+        {% if browser.page < browser.pages %}
+        <div class="buttons-wrapper-button right">
+            <a id="pagination-next-page" href="javascript:void(0)"><div class="darkButton">Kolejne wyniki</div></a>
+        </div>
+        {% endif %}
+        <div class="clear"></div>
+        <div>Strona {{ browser.page }}/{{ browser.pages }}</div>
+    </div>
+</div>
+<div class="clear"></div>
+
+<script type="text/javascript">
+    $(function() {
+        var page = '{{ browser.page }}';
+        var order = '{{ browser.order }}';
+        var dir = '{{ browser.dir }}';
+        var activeRoute = '{{ app.request.get('_route') }}';
+        var fields = '{{ browser.fields }}';
+        var sortFormName = '{{ sort_form.vars.name }}'
+
+        $('#pagination-prev-page').click(function() {
+            page = parseInt(page) - 1;
+            ajaxStart();
+            reload();
+        });
+
+        $('#pagination-next-page').click(function() {
+            page = parseInt(page) + 1;
+            ajaxStart();
+            reload();
+        });
+
+        {% if browser.page > browser.pages %}
+            page = parseInt('{{ browser.pages }}');
+            ajaxStart();
+            reload();
+        {% endif %}
+
+        function ajaxStart()
+        {
+            $loadingDiv = $('<div id="loading"><div class="three-bounce"><div></div><div></div><div></div></div></div>');
+            $loadingDiv.hide();
+            $('#section-loading').prepend($loadingDiv);
+            $('#section-loading').find('#loading').fadeIn('500');
+        }
+
+        function ajaxStop()
+        {
+            $('#section-loading').find('#loading').fadeOut('500', function() {
+                $(this).remove();
+            });
+        }
+
+        function reload()
+        {
+            $.ajax({
+                url: '{{ url('acme_global_generateUrlAjaxForBrowser') }}',
+                type: 'POST',
+                data: {
+                    page: page,
+                    order: order,
+                    dir: dir,
+                    fields: fields,
+                    route: activeRoute
+                },
+                success: function(r) {
+                    var newUrl = r.url;
+                    $.ajax({
+                        url: r.url,
+                        type: 'POST',
+                        success: function(r) {
+                            $('#ajax-content').html(r);
+                            window.history.pushState({}, '', newUrl);
+                            ajaxStop();
+                        }
+                    });
+                }
+            });
+        }
+    });
+</script>
+{% endif %}

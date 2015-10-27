@@ -1,0 +1,28 @@
+acme_global_afterLogin:
+    path:     /after-login
+    defaults: { _controller: AcmeGlobalBundle:Base:afterLogin }
+
+acme_global_ajaxError:
+    path:     /ajax-error/{message}
+    defaults: { _controller: AcmeGlobalBundle:Base:ajaxError }
+
+acme_global_redirectUserPanel:
+    path:     /panel-uzytkownika
+    defaults: { _controller: AcmeGlobalBundle:Base:redirectUserPanel }
+    
+acme_global_generateUrlAjaxForBrowser:
+    path:     /generate-url-ajax-for-browser
+    defaults: { _controller: AcmeGlobalBundle:Base:generateUrlAjaxForBrowser }
+    methods:  [POST]
+    condition: "request.isXmlHttpRequest()"
+
+acme_global_formValidAjax:
+    path:     /form-valid-ajax
+    defaults: { _controller: AcmeGlobalBundle:Base:formValidAjax }
+    methods:  [POST]
+    condition: "request.isXmlHttpRequest()"
+    
+app_global_email:
+    resource: "@AcmeGlobalBundle/Resources/config/routing/email.yml"
+    prefix:   /emails/
+    

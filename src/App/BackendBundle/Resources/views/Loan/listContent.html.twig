@@ -1,0 +1,75 @@
+<div class="section-content">
+    <div class="table">
+        <div class="table-header">
+            <div class="table-header-item">ID Pożyczki</div>
+            <div class="table-header-item">Data utworzenia</div>
+            <div class="table-header-item">Status</div>
+            <div class="table-header-item">Wniosek</div>
+            <div class="table-header-item">Akcja</div>
+            <div class="clear"></div>
+        </div>
+        {% for loan in browser.results %}
+        <div data-loan-id="{{ loan.id }}" class="table-content-row">
+            <div class="table-content-item id">{{ loan.id }}</div>
+            <div class="table-content-item">{{ loan.createdAt | date('d.m.Y') }}</div>
+            <div class="table-content-item statusLabel">{{ loan.statusLabel }}</div>
+            <div class="table-content-item">
+                <a href="{{ url('app_backend_credits_list', { fields: 'references='~loan.credit.references }) }}">{{ loan.credit.references }}</a><br />
+            </div>
+            <div class="table-content-item">
+                {% if loan.isStatusToChangeByAdmin %}
+                    {{ loan.listStatusesForActive|raw }} <br />
+                {% endif %}
+            </div>
+            <div class="clear"></div>
+        </div>
+        {% endfor %}
+        <div class="clear"></div>
+    </div>
+</div>
+{{ include('AcmeGlobalBundle:Base:pagination.html.twig') }}
+
+<script type="text/javascript">
+    $('.loan_statuses').change(function() {
+        $t = $(this);
+        $t.after('<div class="three-bounce"><div></div><div></div><div></div></div>');
+        $val = $(this).val();
+        $loanID = $(this).parent().parent().data('loan-id');
+        $.ajax({
+            url: '{{ url('app_backend_loan_setStatusAjax') }}',
+            type: 'POST',
+            data: {
+                status: $val,
+                id: $loanID
+            },
+            success: function(r) {
+                $t.next('div').remove();
+                $t.parent().parent().find('.statusLabel').html(r.new_status_label);
+                $t.remove();
+                if (r.status === 'success') {
+                    generateNoty('<div class="activity-item"> <i class="fa fa-check text-danger"></i> <div class="activity"> ' + r.message + ' </div> </div>', 'success');
+                }
+
+            }
+        });
+    });
+
+    function generateNoty(text, type) {
+        var n = noty({
+            text: text,
+            type: type,
+            dismissQueue: true,
+            layout: 'topLeft',
+            closeWith: ['click'],
+            theme: 'relax',
+            maxVisible: 10,
+            animation: {
+                open: 'animated bounceInLeft',
+                close: 'animated bounceOutLeft',
+                easing: 'swing',
+                speed: 500
+            }
+        });
+    }
+
+</script>

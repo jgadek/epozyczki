@@ -1,0 +1,31 @@
+{% extends "AcmeGlobalBundle:Base:default.html.twig" %}
+{% block default_header %}
+    Wszystkie wnioski o pożyczki
+{% endblock %}
+{% block default_text %}
+
+    <div id="section-loading">
+        {{ include('AcmeGlobalBundle:Form:sortForm.html.twig', {'sort_form': sort_form}) }}
+        {{ include('AcmeGlobalBundle:Form:filterForm.html.twig', {'filter_form': filter_form}) }}
+        <div class="clear"></div>
+        <div class="section-content-wrapper" id="ajax-content">
+            {{ include('AppFrontendBundle:TextPages:creditsListContent.html.twig') }}
+        </div>
+    </div>
+
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('.section-content-rangeWrapper-box-question').tooltipster({
+                animation: 'fade',
+                delay: 50,
+                theme: 'tooltipster-epozyczki',
+                trigger: 'hover'
+            });
+        });
+
+
+
+    </script>
+    {{ include('AcmeGlobalBundle:Form:globalFormScripts.html.twig', {'filter_form': filter_form}) }}
+{% endblock %}

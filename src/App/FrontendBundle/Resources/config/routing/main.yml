@@ -1,0 +1,4 @@
+app_frontend_main_index:
+    path:     /
+    defaults: { _controller: AppFrontendBundle:Main:index }
+    methods:  [GET, POST]

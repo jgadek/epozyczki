@@ -1,0 +1,642 @@
+@media only screen and (max-width: 1170px) {
+	.table-content-item-more-image {
+		display: none;
+	}
+	#menu {
+		display: none;
+	}
+	#logowanie {
+		display: none;
+	}
+	#rwdMenuButton {
+		display: block;
+	}
+	#logowanie-text {
+		border-left: none;
+	}
+	#give-loan-creator {
+		text-align: center;
+	}
+	#give-loan-creator .section-content-wrapper-top-header {
+		float: none;
+		width: 100%;
+		text-align: center;
+	}
+	#give-loan-creator .smallerBox {
+		width: 50%;
+	}
+	#give-loan-creator .section-content-wrapper-smallerBox-button.bottom {
+		margin-top: 0px;
+		padding-top: 0px;
+	}
+	#give-loan-creator .section-content-wrapper-smallerBox.rightAlign {
+		width: 100%;
+	}
+	#give-loan-creator .biggerBox {
+		width: 50%;
+	}
+	#give-loan-creator .section-content-wrapper-equalBox {
+		width: 100%;
+		float: none;
+	}
+	#give-loan-creator .section-content-wrapper-biggerBox {
+		width: 100%;
+		float: none;
+	}
+	#application-info .section-content-wrapper-biggerBox {
+		width: 100%;
+		float: none;
+	}
+	#application-info-4 .section-content-wrapper-top-header {
+		text-align: center;
+		width: 100%;
+	}
+	#application-info-4 .section-content-wrapper-fullBox .equalBox {
+		width: 100%;
+		float: none;
+		padding: 0;
+	}
+	#application-info-4 .section-content-wrapper-fullBox .summation {
+	
+	}
+	#application-info-4 .section-content-wrapper-fullBox .summation-row {
+		float: none;
+		width: 100%;
+	}
+	#application-info-4 .section-content-wrapper-fullBox .summation-row-label {
+		width: 50%;
+		text-align: right;
+	}
+	#application-info-4 .section-content-wrapper-fullBox .summation-row-description {
+		width: 50%;
+		padding-left: 5%;
+		text-align: left;
+	}
+}
+
+@media only screen and (max-width: 1100px) {
+	#get-loan-steps .section-content-steps-column {
+		padding-right: 20px;
+		padding-left: 20px;
+	}
+	#get-loan-steps .section-content-steps-column-content-text {
+		font-size: 16px;
+		margin-left: 10px;
+		margin-right: 10px;
+	}
+	#get-loan-creator .section-content-wrapper-biggerBox, #give-loan-creator-2 .section-content-wrapper-biggerBox {
+		width: 100%;
+		float: none;
+	}
+	#get-loan-creator .section-content-wrapper-smallerBox, #give-loan-creator-2 .section-content-wrapper-smallerBox {
+		width: 100%;
+		float: none;
+	}
+	#get-loan-creator .section-content-wrapper-top-header.rightAlign, #give-loan-creator-2 .section-content-wrapper-top-header.rightAlign {
+		float: none;
+		text-align: center;
+	}	
+	#get-loan-creator .section-content-wrapper-smallerBox, #give-loan-creator-2 .section-content-wrapper-smallerBox {
+		text-align: center;
+	}	
+	#give-loan-creator-2 .section-content-wrapper-top-header {
+		text-align: center;
+		width: 100%;
+		float: none;
+	}
+	#application-steps .section-content-steps-column {
+		padding-right: 10px;
+		padding-left: 10px;
+	}
+	#application-steps .section-content-steps-column-content-text {
+		font-size: 16px;
+		margin-left: 10px;
+		margin-right: 10px;
+	}
+}
+
+@media only screen and (max-width: 1070px) {
+	#big-banner-header {
+		font-size: 40px;
+	}
+	.stats-box-description {
+		font-size: 14px;
+	}
+	.about-box-cloud {
+		height: 400px;
+	}
+	.about-box-cloud-container {
+		height: 310px;
+	}
+	#get-loan-creator-step-4 .section-content-wrapper-biggerBox{
+		float: none;
+		width: 100%;
+		text-align: center;
+	}
+	#get-loan-creator-step-4 .section-content-wrapper-smallerBox {
+		float: none;
+		width: 100%;
+		text-align: center;
+	}
+	#get-loan-creator-step-4 .section-content-wrapper-top {
+		display: inline-block;
+	}
+	#get-loan-creator-step-4 .summation {
+	
+	}
+	#get-loan-creator-step-4 .summation-row, #get-loan-creator-step-4 .summation-row.medium {
+		float: none;
+		width: 100%;
+	}
+	#get-loan-creator-step-4 .summation-row-label {
+		width: 50%;
+		text-align: right;
+	}
+	#get-loan-creator-step-4 .summation-row-description {
+		width: 50%;
+		padding-left: 5%;
+		text-align: left;
+	}
+}
+
+@media only screen and (max-width: 1000px) {
+	.safety-boxes-box-description {
+		font-size: 14px;
+	}
+	#footer-content-left {
+		float: none;
+		width: 100%;
+		text-align: center;
+	}
+	#footer-content-right {
+		margin-top: 30px;
+		float: none;
+		width: 100%;
+		text-align: center;
+	}
+	#footer-content-right-standards-text {
+		text-align: center;
+	}
+	#standardy-logos {
+		padding-top: 10px;
+		max-width: 550px;
+		margin: 0 auto;
+	}
+	#get-loan-creator .section-content-wrapper-equalBox {
+		width: 100%;
+		float: none;
+	}
+	#get-loan-creator .section-content-wrapper-top {
+		text-align: right;
+	}
+	#get-loan-creator .section-content-wrapper-top-header.with-margin {
+		float: left;
+		width: auto;
+		text-align: left;
+	}
+	#get-loan-creator .section-content-wrapper-top-inputBox {
+		float: right;
+		margin-top: 0px;
+		margin-left: 0px;
+	}
+	#get-loan-creator .fullBox {
+		padding: 0;
+	}
+	#get-loan-creator .section-content-wrapper-top-header {
+		float: none;
+		text-align: center;
+	}
+	#get-loan-creator .section-content-wrapper-row {
+		float: none;
+		width: 100%;
+	}
+	#get-loan-creator .section-content-wrapper-row-label {
+		width: 50%;
+		text-align: right;
+	}
+	#get-loan-creator .section-content-wrapper-row-description {
+		width: 50%;
+		padding-left: 5%;
+	}
+	#give-loan-steps .section-content-steps-column {
+		padding-right: 10px;
+		padding-left: 10px;
+	}
+	#give-loan-steps .section-content-steps-column-content-text {
+		font-size: 16px;
+		margin-left: 10px;
+		margin-right: 10px;
+	}
+	#application-info-4 .offers{
+		margin: 0;
+		width: 100%;
+	}
+}
+
+@media only screen and (max-width: 880px) {
+	.about-box-cloud {
+		height: 450px;
+	}
+	.about-box-cloud-container {
+		height: 360px;
+	}
+	#get-loan-steps .section-content-steps-column {
+		padding-right: 10px;
+		padding-left: 10px;
+	}
+	#get-loan-steps .section-content-steps-column-content-text {
+		font-size: 16px;
+		margin-left: 10px;
+		margin-right: 10px;
+	}
+	#application-info-buttons .buttons-wrapper-button {
+		width: 100%;
+		float: none;
+		margin-top: 10px;
+		padding: 0;
+	}
+	#application-info-buttons {
+		margin-top: 20px;
+	}
+	#application-info-buttons .lightButton {
+		width: 100%;
+	}
+	#application-info-buttons .greyButton {
+		width: 100%;
+	}
+}
+
+@media only screen and (max-width: 800px) { 
+	.about-box-cloud-container-text {
+		font-size: 13px;
+	}
+	.about-box-cloud-container-info-name {
+		font-size: 16px;
+	}
+	.about-box-cloud-container-info-position {
+		font-size: 14px;
+	}
+	.table-header-item {
+		font-size: 12px;
+	}
+	.table-content-item {
+		font-size: 14px;
+	}
+	.stats-box {
+		float: none;
+		width: 100%;
+	}
+	.stats-box-description {
+		font-size: 18px;
+	}
+	#footer-content-footer-middle-up {
+		opacity: 0.2;
+	}
+	#get-loan-steps, #give-loan-steps, #application-steps {
+		float: none; 
+		width: 100%;
+	}
+	#get-loan-steps .section-content-steps-column-content, #give-loan-steps .section-content-steps-column-content, #application-steps .section-content-steps-column-content {
+		
+	}
+	#get-loan-steps .section-content-steps-column, #give-loan-steps .section-content-steps-column, #application-steps .section-content-steps-column {
+		float: none;
+		width: 100%;
+		padding-left: 0px;
+		padding-top: 15px;
+		padding-right: 0px;
+		padding-bottom: 10px;
+	}
+	#get-loan-steps .section-content-steps-column-content-text, #give-loan-steps .section-content-steps-column-content-text, #application-steps .section-content-steps-column-content-text {
+		margin-left: 15px;
+		font-size: 18px;
+	}
+	
+	#get-loan-creator .section-content-wrapper-biggerBox .equalBox, #give-loan-creator .section-content-wrapper-biggerBox .equalBox, #give-loan-creator-2 .equalBox, #give-loan-creator-2 .fullBox {
+		float: none;
+		width: 100%;
+		padding: 0;
+	}
+	#get-loan-creator .section-content-wrapper-biggerBox .form-inputBox-radioBox, #give-loan-creator .section-content-wrapper-biggerBox .form-inputBox-radioBox, #give-loan-creator-2 .section-content-wrapper-biggerBox .form-inputBox-radioBox {
+		margin-top: 20px;
+		text-align: center;
+	}
+	#application-info .section-content-wrapper-biggerBox {
+		width: 100%;
+		float: none;
+	}
+	#application-info .section-content-wrapper-top {
+		text-align: center;
+	}
+	#application-info .section-content-wrapper-top-header {
+		width: 100%;
+		float: none;
+	}
+	#application-info .btn-edit {
+		float: none;
+		display: inline-block;
+	}
+	#application-info .btn-cancel {
+		float: none;
+		display: inline-block;
+	}
+	#application-info .summation {
+	
+	}
+	#application-info .summation-row {
+		float: none;
+		width: 100%;
+	}
+	#application-info .summation-row-label {
+		width: 30%;
+		text-align: right;
+	}
+	#application-info .summation-row-description {
+		width: 70%;
+		padding-left: 5%;
+		text-align: left;
+	}
+}
+
+@media only screen and (max-width: 750px) {
+	.loan-status{padding:0 30px;}
+	.loan-status li{width:100%;border-top:none !important;padding:20px 0;}
+	.loan-status li > div{float:left;border:none;top:default;right:default;text-align:center;}
+	.loan-status li span{float:left !important;}
+	.loan-status li > div > div{top:0;left:20px;text-align: left}
+
+	.header {
+		font-size: 26px;
+	}
+	.header.small {
+		font-size: 22px;
+	}
+	#safety .header {
+		font-size: 24px;
+	}
+	.safety-boxes-box-description {
+		font-size: 12px;
+	}
+	.about-box {
+		width: 100%;
+		margin-right: 0;
+		margin-bottom: 30px;
+	}
+	.about-box-cloud {
+		height: 250px;
+	}
+	.about-box-cloud-container {
+		height: 190px;
+	}
+	.table-header-item {
+		font-size: 10px;
+	}
+	.table-content-item {
+		font-size: 12px;
+	}
+	.section-questions-question {
+		text-align: center;
+	}
+	.section-questions-question-questionDate {
+		width: 100%;
+		float: none;
+	}
+	.section-questions-question-questionInformations {
+		width: 100%;
+		float: none;
+	}
+	#statusPozyczki {
+		margin-left: 0px;
+		margin-right: 0px;
+	}
+}
+
+@media only screen and (max-width: 700px) {
+	#application-info .summation-row-label {
+		float: none;
+		width: 100%;
+		text-align: center;
+		padding: 0;
+	}
+	#application-info .summation-row-description {
+		float: none;
+		padding: 0;
+		width: 100%;
+		text-align: center;
+	}
+}
+
+@media only screen and (max-width: 650px) {
+
+
+	.safety-boxes-box-description {
+		font-size: 10px;
+	}
+	.about-box-cloud {
+		height: 290px;
+	}
+	.about-box-cloud-container {
+		height: 230px;
+	}
+	#media-logo {
+		display: none;
+	}
+	#media-logo-rwd {
+		display: block;
+	}
+	#get-loan-creator-step-4 .summation-row-label {
+		float: none;
+		width: 100%;
+		text-align: center;
+		padding: 0;
+	}
+	#get-loan-creator-step-4 .summation-row-description {
+		float: none;
+		padding: 0;
+		width: 100%;
+		text-align: center;
+	}
+}
+@media only screen and (max-width: 600px) {
+	.standardy-logos-split {
+		float: none;
+		width: 100%;
+		text-align: center;
+	}
+	.standardy-logos-split:nth-child(1) {
+		margin-bottom: 20px;
+	}
+	#application-info-4 .section-content-wrapper-fullBox .summation-row-label {
+		float: none;
+		text-align: center;
+		width: 100%;
+		padding: 0;
+	}
+	#application-info-4 .section-content-wrapper-fullBox .summation-row-description {
+		float: none;
+		text-align: center;
+		width: 100%;
+		padding: 0;
+	}
+	#statusPozyczki-normalImage {
+		display: none;
+	}
+	#statusPozyczki-rwdImage {
+		display: block;
+	}
+}
+@media only screen and (max-width: 570px) {
+	.safety-boxes-box {
+		width: 100%;
+		margin-bottom: 30px;
+		border: none;
+	}
+	.safety-boxes-box-description {
+		font-size: 16px;
+	}
+	.table-header-item {
+		font-size: 8px;
+	}
+	.table-content-item {
+		font-size: 10px;
+	}
+	.footer-content-left-info {
+		width: 100%;
+	}
+	.buttons-wrapper {
+		text-align: center;
+	}
+	.buttons-wrapper-button.left {
+		float: none;
+	}
+	.buttons-wrapper-button.right {
+		float: none;
+		margin-top: 10px;
+	}
+	#footer-content-footer {
+		font-size: 12px;
+	}
+	#get-loan-creator .section-content-wrapper-top {
+		text-align: center;
+	}
+	#get-loan-creator .section-content-wrapper-top-header.with-margin {
+		float: none;
+		width: 100%;
+		text-align: center;
+	}
+	#get-loan-creator .section-content-wrapper-top-inputBox {
+		float: none;
+		margin-top: 10px;
+		margin-left: 20px;
+		display: inline-block;
+	}
+	#application-info-4 .buttons-wrapper {
+		margin-top: 20px;
+	}
+	#application-info-4 .buttons-wrapper-button {
+		margin-top: 0px;
+		display: inline-block;
+	}
+	#application-info-4 .buttons-wrapper-button .btn-edit, #application-info-4 .buttons-wrapper-button .btn-cancel {
+		margin-top: 0px;
+	}
+	#application-info-4 .buttons-wrapper-button.left {
+		float: none;
+		width: 100%;
+	}
+	#application-info-4 .buttons-wrapper-button.right {
+		float: none;
+		width: 100%;
+	}
+	#get-loan-creator-step-4 .section-content-wrapper-top {
+		text-align: center;
+	}
+	#get-loan-creator-step-4 .section-content-wrapper-top-header {
+		float: none;
+		width: 100%;
+	}
+	#get-loan-creator-step-4 .btn-edit {
+		float: none;
+		display: inline-block;
+		margin: 0;
+		margin-top: 10px;
+	}
+	#give-loan-creator .section-content-rangeWrapper-box {
+		display: block;
+	}
+	#give-loan-creator .section-content-rangeWrapper-box-text, #give-loan-creator .section-content-rangeWrapper-box-input {
+		float: none;
+		margin-left: 0px;
+		margin-right: 0px;
+		width: 100%;
+	}
+	#give-loan-creator .section-content-rangeWrapper-box-input {
+		margin-top: 10px;
+		width: 100%;
+	}
+	#give-loan-creator .section-content-rangeWrapper-box-input input[type=text] {
+		text-align: center;
+		width: 100%;
+	}
+	#give-loan-creator .section-content-rangeWrapper-box-question {
+		display: none;
+	}
+}
+
+@media only screen and (max-width: 500px) {
+	.table-header-item {
+		font-size: 5px;
+	}
+	.table-content-item {
+		font-size: 7px;
+	}
+	#rwdMenuButton { 
+		margin-top: 14px;
+	}
+	#logowanieRWD {
+		display: block;
+	}
+	#footer-content-footer-copyrights {
+		float: none;
+		width: 100%;
+	}
+	#footer-content-footer-designedBy {
+		float: none;
+		width: 100%;
+	}
+	#get-loan-creator .section-content-wrapper-row-label, #give-loan-creator-2 .section-content-wrapper-row-label {
+		float: none;
+		width: 100%;
+		text-align: center;
+	}
+	#get-loan-creator .section-content-wrapper-row-description, #give-loan-creator-2 .section-content-wrapper-row-description {
+		float: none;
+		width: 100%;
+		text-align: center;
+		padding-left: 0%;
+	}
+	#get-loan-creator .form-inputBox-input.marginRight {
+		float: none;
+		width: 100%;
+	}
+	#get-loan-creator .form-inputBox-question {
+		display: none;
+	}
+	#give-loan-checkboxes .biggerBox, #give-loan-checkboxes .smallerBox {
+		float: none;
+		width: 100%;
+		margin: 0;
+		padding: 0;
+	}
+}
+@media only screen and (max-width: 400px) {
+	.about-box-cloud {
+		height: 330px;
+	}
+	.about-box-cloud-container {
+		height: 260px;
+	}
+	#loginBox {
+		width: 250px;
+	}
+}

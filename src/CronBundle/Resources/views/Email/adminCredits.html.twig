@@ -1,0 +1,12 @@
+{% extends "::email.html.twig" %}
+
+{% block content %}
+    {% if credits|length > 0 %}
+        <p>Lista wniosków o pożyczkę na dzień {{ "now" |date('d.m.Y') }}</p>
+        {% for credit in credits %}
+            <p>Wniosek numer {{ credit.references }}, <a href="{{ url('app_backend_credits_list', { fields: 'references='~credit.references }) }}">>> więcej szczegółów <<</a></p>
+        {% endfor %}
+    {% else %}
+        <p>Na dzień {{ "now" |date('d.m.Y') }} nie ma żadnych nowych wniosków</p>
+    {% endif %}
+{% endblock %}

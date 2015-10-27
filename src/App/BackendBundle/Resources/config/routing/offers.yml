@@ -1,0 +1,8 @@
+app_backend_offers_list:
+    path:     /{page}/{order}/{dir}/{fields}
+    defaults: { _controller: AppBackendBundle:Offers:list, page: 1, order: created_at, dir: DESC, fields: '' }
+    requirements:
+        page:  \d+
+        order: (created_at|references)
+        dir:  (ASC|DESC)
+    methods:  [GET, POST]

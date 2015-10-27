@@ -1,0 +1,69 @@
+app_frontend_borrower_myApplications:
+    path:     /moje-wnioski/{page}/{order}/{dir}/{fields}
+    defaults: { _controller: AppFrontendBundle:Borrower:myApplications, page: 1, order: created_at, dir: DESC, fields: ''  }
+    requirements:
+        page:  \d+
+        order: (created_at|references)
+        dir:  (ASC|DESC)
+    methods:  [GET, POST]
+    
+app_frontend_borrower_myAccount:
+    path:     /moje-dane
+    defaults: { _controller: AppFrontendBundle:Borrower:myAccount  }
+    methods:  [GET, POST]
+    
+app_frontend_borrower_myApplications:
+    
+app_frontend_borrower_credit_info:
+    path:     /informacje-o-wniosku/{id}
+    defaults: { _controller: AppFrontendBundle:Borrower:creditInfo  }
+    requirements:
+        id:  \d+
+    methods:  [POST]
+    condition: "request.isXmlHttpRequest()"
+    
+app_frontend_borrower_offerInfo:
+    path:     /informacje-o-ofercie/{id}
+    defaults: { _controller: AppFrontendBundle:Borrower:offerInfo  }
+    requirements:
+        id:  \d+
+    methods:  [POST]
+    condition: "request.isXmlHttpRequest()"
+    
+app_frontend_borrower_detailsFormSave:
+    path:     /szczegoly-zapisz/{id}
+    defaults: { _controller: AppFrontendBundle:Borrower:detailsFormSave  }
+    requirements:
+        id:  \d+
+    methods:  [POST]
+    condition: "request.isXmlHttpRequest()"
+    
+app_frontend_borrower_creditCancel:
+    path:     /anuluj-kredyt/{id}
+    defaults: { _controller: AppFrontendBundle:Borrower:creditCancel  }
+    requirements:
+        id:  \d+
+    methods:  [GET]
+    
+app_frontend_borrower_offerAccept:
+    path:     /akceptuj-oferte/{id}
+    defaults: { _controller: AppFrontendBundle:Borrower:offerAccept  }
+    requirements:
+        id:  \d+
+    methods:  [GET]
+    
+app_frontend_borrower_offerCancel:
+    path:     /odrzuc-oferte/{id}
+    defaults: { _controller: AppFrontendBundle:Borrower:offerCancel  }
+    requirements:
+        id:  \d+
+    methods:  [GET]
+    
+    
+app_frontend_borrower_sendReply:
+    path:     /wyslij-odpowiedz/{id}
+    defaults: { _controller: AppFrontendBundle:Borrower:sendReply  }
+    requirements:
+        id:  \d+
+    methods:  [POST]
+    condition: "request.isXmlHttpRequest()"

@@ -1,0 +1,25 @@
+app_frontend_credit_firstStep:
+    path:     /1-krok
+    defaults: { _controller: AppFrontendBundle:Credit:firstStep }
+    methods:  [GET, POST]
+    
+app_frontend_credit_secondStep:
+    path:     /2-krok
+    defaults: { _controller: AppFrontendBundle:Credit:secondStep }
+    methods:  [GET, POST]
+    
+app_frontend_credit_thirdStep:
+    path:     /3-krok
+    defaults: { _controller: AppFrontendBundle:Credit:thirdStep }
+    methods:  [GET, POST]
+    
+app_frontend_credit_fourthStep:
+    path:     /4-krok
+    defaults: { _controller: AppFrontendBundle:Credit:fourthStep }
+    methods:  [GET, POST]
+    
+app_frontend_credit_thankYou:
+    path:     /dziekujemy
+    defaults: { _controller: AppFrontendBundle:Credit:thankYou }
+    methods:  [GET]
+    

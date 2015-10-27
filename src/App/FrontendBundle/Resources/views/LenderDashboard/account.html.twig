@@ -1,0 +1,131 @@
+{% extends "::base.html.twig" %}
+{% block body %}
+<div class="section">
+    <div class="container">
+        <div class="section-content-steps" id="get-loan-steps">
+            <div class="section-content-steps-column">
+                <div class="section-content-steps-column-content" onClick="location.href = '{{ url('app_frontend_lender_dashboard_index') }}'">
+                    <div class="section-content-steps-column-content-text">Wnioski o pożyczkę</div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+            <div class="section-content-steps-column" onClick="location.href = '{{ url('app_frontend_lender_dashboard_preferences') }}'">
+                <div class="section-content-steps-column-content">
+                    <div class="section-content-steps-column-content-text">Twoje preferencje</div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+            <div class="section-content-steps-column active" onClick="location.href = '{{ url('app_frontend_lender_dashboard_account') }}'">
+                <div class="section-content-steps-column-content">
+                    <div class="section-content-steps-column-content-text">Twoje konto</div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+
+        <div class="clear"></div>
+        {{ form_start(form) }}
+        <div class="section-content-wrapper" id="give-loan-creator-2">
+            <div class="section-content-wrapper-biggerBox">
+                <div class="section-content-wrapper-top">
+                    <div class="section-content-wrapper-top-header">Twoje dane: <span><u>nigdy</u> nie będą publicznie dostępne!</span></div>
+                    <div class="clear"></div>
+                </div>
+                <div class="equalBox">
+                    <div class="form">
+                        <div class="form-inputBox-radioBox">{{ form_widget(form.intTypeOfPerson[0], {'id': 'OF'}) }}<label for="OF"><span></span>Osoba fizyczna</label></div>
+                        <div class="form-inputBox-input">{{ form_widget(form.strFirstNameNatural) }}</div>
+                        <div class="form-inputBox-input">{{ form_widget(form.strSecondNameNatural) }}</div>
+                        <div class="form-inputBox-input">{{ form_widget(form.strLastNameNatural) }}</div>
+                        <div class="form-inputBox-input">{{ form_widget(form.strPeselNatural) }}</div>
+                        <div class="form-inputBox-input">{{ form_widget(form.strIdNumberNatural) }}</div>
+                        <div class="form-inputBox-input">{{ form_widget(form.strAddressNatural) }}</div>
+                        <div class="form-inputBox-input">{{ form_widget(form.strPostCodeNatural) }}</div>
+                        <div class="form-inputBox-input">{{ form_widget(form.strCityNatural) }}</div>
+                        <div class="form-inputBox-input">{{ form_widget(form.strPhoneNatural) }}</div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+                <div class="equalBox">
+                    <div class="form">
+                        <div class="form-inputBox-radioBox">{{ form_widget(form.intTypeOfPerson[1], {'id': 'OP'}) }}<label for="OP"><span></span>Osoba prawna</label></div>
+                        <div class="form-inputBox-input">{{ form_widget(form.strNameOfCorporationLegal) }}</div>
+                        <div class="form-inputBox-input">{{ form_widget(form.strRepresentativeLegal) }}</div>
+                        <div class="form-inputBox-input">{{ form_widget(form.strKrsOrEdgLegal) }}</div>
+                        <div class="form-inputBox-input">{{ form_widget(form.strNipLegal) }}</div>
+                        <div class="form-inputBox-input">{{ form_widget(form.strRegonLegal) }}</div>
+                        <div class="form-inputBox-input">{{ form_widget(form.strAddressLegal) }}</div>
+                        <div class="form-inputBox-input">{{ form_widget(form.strPostCodeLegal) }}</div>
+                        <div class="form-inputBox-input">{{ form_widget(form.strCityLegal) }}</div>
+                        <div class="form-inputBox-input">{{ form_widget(form.strPhoneLegal) }}</div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="section-content-wrapper-smallerBox">
+                <div class="section-content-wrapper-top">
+                    <div class="section-content-wrapper-top-header">Twoje konto w systemie:</div>
+                    <div class="clear"></div>
+                </div>
+                <div class="fullBox">
+                    <div class="form">
+                        <div class="form-inputBox-input">{{ form_widget(form.username) }}</div>
+                        <div class="form-inputBox-input">{{ form_widget(form.email) }}</div>
+                        <div class="form-inputBox-input">{{ form_widget(form.password) }}</div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="clear"></div>
+            <div class="buttons-wrapper">
+
+                <div class="buttons-wrapper-button right">
+                    <input type="submit" class="darkButton" value="Aktualizuj">
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+        {{ form_end(form) }}
+    </div>
+</div>
+
+<div id="push"></div>
+{% endblock %}
+{% block javascripts %}
+<script type="text/javascript">
+    $(function() {
+        $('.form-inputBox-radioBox input[type="radio"]').click(function() {
+            $('*[data-required="true"]').attr('required', true).removeAttr('required');
+            $(this).parent().parent().find('*[data-required="true"]').attr('required', true);
+        });
+    });
+
+    function generate(text, type) {
+        var n = noty({
+            text: text,
+            type: type,
+            dismissQueue: true,
+            layout: 'topLeft',
+            closeWith: ['click'],
+            theme: 'relax',
+            maxVisible: 10,
+            animation: {
+                open: 'animated bounceInLeft',
+                close: 'animated bounceOutLeft',
+                easing: 'swing',
+                speed: 500
+            }
+        });
+        console.log('html: ' + n.options.id);
+    }
+
+    function generateAll() {
+        {% for error in errors %}
+        generate('<div class="activity-item"> <i class="fa fa-exclamation-triangle text-danger"></i> <div class="activity"> {{ error }} </div> </div>', 'error');
+        {% endfor %}
+    }
+    generateAll();
+</script>
+{% endblock %}

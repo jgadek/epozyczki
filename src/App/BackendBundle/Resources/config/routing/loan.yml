@@ -1,0 +1,14 @@
+app_backend_loan_list:
+    path:     /{page}/{order}/{dir}/{fields}
+    defaults: { _controller: AppBackendBundle:Loan:list, page: 1, order: created_at, dir: DESC, fields: '' }
+    requirements:
+        page:  \d+
+        order: (created_at|id)
+        dir:  (ASC|DESC)
+    methods:  [GET, POST]
+    
+app_backend_loan_setStatusAjax:
+    path:     /zmiana-statusu-ajax
+    defaults: { _controller: AppBackendBundle:Loan:setStatusAjax }
+    methods:  [POST]
+    condition: "request.isXmlHttpRequest()"

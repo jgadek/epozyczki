@@ -1,0 +1,7 @@
+{% extends "::email.html.twig" %}
+    
+{% block content %}
+    <p>Witamy {{ user.firstName }},</p>
+    <p>Pożyczka nr {{ credit.references }} została odrzucona przez administratora.</p>
+    <p>Więcej szczegółów znajdziesz pod linkiem: <a style="color:#2BDE73;" href="{{ url('app_frontend_lender_dashboard_index', { fields: 'references='~credit.references }) }}">{{ url('app_frontend_lender_dashboard_index', { fields: 'references='~credit.references }) }}</a></p>
+{% endblock %}

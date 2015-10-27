@@ -1,0 +1,33 @@
+{% extends "::base.html.twig" %}
+{% block body %}
+<div class="section">
+    <div class="container">
+        <div class="header">WITAJ {{ app.user.firstname }}!</div>
+        <div class="header-description">Poniżej znajdziesz wszystkie niezbędne <span>informacje dotyczące Twojego konta</span></div>
+        <div class="clear"></div>
+        <div class="section-content-steps" id="get-loan-steps">
+            <div class="section-content-steps-column">
+                <div class="section-content-steps-column-content" onClick="location.href = '{{ url('app_frontend_borrower_myApplications') }}'">
+                    <div class="section-content-steps-column-content-text">Twoje wnioski</div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+            <div class="section-content-steps-column active" onClick="location.href = '{{ url('app_frontend_borrower_myAccount') }}'">
+                <div class="section-content-steps-column-content">
+                    <div class="section-content-steps-column-content-text">Twoje konto</div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="clear"></div>
+        <div>
+            
+        </div>
+    </div>
+</div>
+
+<div id="push"></div>
+{% endblock %}
+{% block javascripts %}
+{% endblock %}

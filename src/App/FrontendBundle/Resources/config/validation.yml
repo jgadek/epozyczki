@@ -1,0 +1,6 @@
+App\FrontendBundle\Utils\Form\Credit\ThirdStepCreditForm:
+    properties:
+        strPesel:
+            - Regex:
+                pattern: "/\d/"
+                message: Your phone number should contain numbers only

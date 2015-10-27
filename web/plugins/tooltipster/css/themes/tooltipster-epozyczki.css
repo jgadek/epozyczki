@@ -1,0 +1,13 @@
+.tooltipster-epozyczki {
+	border-radius: 15px; 
+	border: 1px solid #000;
+	background: #000;
+	color: #fff;
+}
+.tooltipster-epozyczki .tooltipster-content {
+	font-size: 14px;
+	font-weight: bold;
+	line-height: 16px;
+	padding: 15px 20px;
+	overflow: hidden;
+}

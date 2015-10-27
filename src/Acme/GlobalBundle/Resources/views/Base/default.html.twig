@@ -1,0 +1,17 @@
+{% extends "::base.html.twig" %}
+{% block body %}
+<div class="section">
+    <div class="container">
+        <div class="header">{% block default_header %}{% endblock %}</div>
+        <div class="section-content">
+            <div class="section-textPage">
+                {% block default_text %}{% endblock %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="push"></div>
+{% endblock %}
+{% block javascripts %}
+{% endblock %}

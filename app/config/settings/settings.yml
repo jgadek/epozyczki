@@ -1,0 +1,4 @@
+parameters:
+    mailer_available: true
+    mailer_admin_list:
+        admin: jak.gadek@gmail.com,jakub.woznica@okinet.pl

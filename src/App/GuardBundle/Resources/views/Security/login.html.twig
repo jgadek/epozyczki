@@ -1,0 +1,77 @@
+{% extends "::base.html.twig" %}
+
+{% trans_default_domain "FOSUserBundle" %}
+{% block body %}
+
+<div class="section">
+    <div class="container">
+        <div class="header">Logowanie</div>
+        <div class="header-description">Zaloguj się a otrzymasz dostęp do swoich wniosków</div>
+        <div class="section-content">
+            <div class="section-content-wrapper">
+                <div class="section-content-wrapper-fullBox">
+                    <div id="loginBox">
+                        <form action="{{ path("fos_user_security_check") }}" method="post">
+                            <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+                            <div class="form-inputBox-input"><input placeholder="E-mail" type="text" id="username" name="_username" value="{{ last_username }}" required="required" /></div>
+                            <div class="form-inputBox-input"><input placeholder="Hasło" type="password" id="password" name="_password" required="required" /></div>
+                            <div class="form-inputBox-checkboxBox"><input type="checkbox" id="remember_me" name="_remember_me" checked/><label for="remember_me"><span></span>Zapamiętaj mnie</label></div>
+                            <input type="submit" class="darkButton" value="Zaloguj">
+                            <div style="margin-top: 15px;"><a href="#">Przypomnij hasło</a></div>
+                            <div class="clear"></div>
+                        </form>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+    </div> 
+</div>
+
+<div class="section">
+    <div class="container">
+        <div class="header">Rejestracja</div>
+        <div class="header-description">Załóż konto aby uzuskać dostęp do systemu</div>
+        <div class="section-content">
+            <div class="section-content-wrapper">
+                <div class="section-content-wrapper-fullBox">
+                    <div>
+                        <a href="{{ url('app_frontend_lender_registerFirstStep') }}" class="register1 greenButton white">Rejestracja pożyczkodawcy</a>
+                        <a href="{{ url('app_frontend_credit_firstStep') }}" class="register2 greenButton white">Rejestracja pożyczkobiorcy</a>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+    </div>               
+</div>            
+
+<div id="push"></div>
+
+<script type="text/javascript">
+    function generate(text, type) {
+        var n = noty({
+            text: text,
+            type: type,
+            dismissQueue: true,
+            layout: 'topLeft',
+            closeWith: ['click'],
+            theme: 'relax',
+            maxVisible: 10,
+            animation: {
+                open: 'animated bounceInLeft',
+                close: 'animated bounceOutLeft',
+                easing: 'swing',
+                speed: 500
+            }
+        });
+        console.log('html: ' + n.options.id);
+    }
+    {% if error %}
+    generate('<div class="activity-item"> <i class="fa fa-exclamation-triangle text-danger"></i> <div class="activity"> {{ error.messageKey|trans(error.messageData, 'security') }} </div> </div>', 'error');
+    {% endif %}
+</script>
+
+{% endblock %}

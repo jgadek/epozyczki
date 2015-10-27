@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+        <title>{% block title %}E-pożyczki{% endblock %}</title>
+        {% block stylesheets %}
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,300&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="{{ asset('plugins/jqueryui/jquery-ui.min.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}"/>
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/styleRWD.css') }}"/>
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/buttons.css') }}"/>
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/animate.css') }}"/>
+        <link rel="stylesheet" type="text/css" href="{{ asset('plugins/font-awesome/css/font-awesome.min.css') }}"/>
+        <link rel="stylesheet" type="text/css" href="{{ asset('plugins/animate.css') }}"/>
+        <link rel="stylesheet" type="text/css" href="{{ asset('plugins/tooltipster/css/tooltipster.css') }}" />
+        <link rel="stylesheet" type="text/css" href="{{ asset('plugins/tooltipster/css/themes/tooltipster-epozyczki.css') }}" />
+        {% endblock %}
+        <script src="{{ asset('plugins/jquery-1.11.2.min.js') }}"></script>
+        <script src="{{ asset('plugins/jqueryui/jquery-ui.min.js') }}"></script>
+        <script src="{{ asset('plugins/jquery.easypiechart.min.js') }}"></script>
+        <script src="{{ asset('plugins/css3-mediaqueries.js') }}"></script>
+        <script src="{{ asset('js/script.js') }}"></script>
+        <script src="{{ asset('js/jquery.noty.packaged.min.js') }}"></script>
+        <script src="{{ asset('plugins/tooltipster/js/jquery.tooltipster.min.js') }}"></script>
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+    <body>
+        <div id="wrapper">
+            <div id="top">
+                <div class="container">
+                    <div id="logo">e-pozyczki.pl</div>
+                    <div id="rwdMenuButton"></div>
+                    <div id="logowanie">
+                        {% if app.user %}
+                        <div id="logowanie-text">
+                            <a href="{{ url('acme_global_redirectUserPanel') }}">Panel użytkownika</a><br />
+                            <a href="{{ url('fos_user_security_logout') }}">Wyloguj</a>
+                        </div>
+                        {% else %}
+                        <div id="logowanie-text">
+                            <a href="{{ url('fos_user_security_login') }}">Strefa logowania</a>
+                        </div>
+                        <div id="logowanie-ico"></div>
+                        {% endif %}
+                    </div>
+                    <div id="menu">
+                        <ul>
+                            <li><a class="{% if app.request.get('_route') == 'app_frontend_main_index' %} active {% endif %}" href="{{ url('app_frontend_main_index') }}">Powrót do aplikacji</a></li>
+                            <li><a class="{% if app.request.get('_route') == 'app_backend_users_list' %} active {% endif %}" href="{{ url('app_backend_users_list') }}">Użytkownicy</a></li>
+                            <li><a class="{% if app.request.get('_route') == 'app_backend_credits_list' %} active {% endif %}" href="{{ url('app_backend_credits_list') }}">Wnioski</a></li>
+                            <li><a class="{% if app.request.get('_route') == 'app_backend_loan_list' %} active {% endif %}" href="{{ url('app_backend_loan_list') }}">Pożyczki</a></li>
+                            <li><a class="{% if app.request.get('_route') == 'app_backend_offers_list' %} active {% endif %}" href="{{ url('app_backend_offers_list') }}">Oferty</a></li>
+                        </ul>
+                    </div>
+                    <div id="menuRWD">
+                        <ul>
+                            <li><a class="{% if app.request.get('_route') == 'app_frontend_main_index' %} active {% endif %}" href="{{ url('app_frontend_main_index') }}">Powrót do aplikacji</a></li>
+                            <li><a class="{% if app.request.get('_route') == 'app_backend_users_list' %} active {% endif %}" href="{{ url('app_backend_users_list') }}">Użytkownicy</a></li>
+                            <li><a class="{% if app.request.get('_route') == 'app_backend_credits_list' %} active {% endif %}" href="{{ url('app_backend_credits_list') }}">Wnioski</a></li>
+                            <li><a class="{% if app.request.get('_route') == 'app_backend_loan_list' %} active {% endif %}" href="{{ url('app_backend_loan_list') }}">Pożyczki</a></li>
+                            <li><a class="{% if app.request.get('_route') == 'app_backend_offers_list' %} active {% endif %}" href="{{ url('app_backend_offers_list') }}">Oferty</a></li>
+                        </ul>
+                        <div id="logowanieRWD">
+                            <div id="logowanieRWD-text">Strefa logowania</div>
+                            <div id="logowanieRWD-ico"></div>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+            {% block body %}{% endblock %}
+        </div>
+        <footer>
+            <div class="container">
+                <div id="footer-content">
+                    <div id="footer-content-left">
+                        <div style="font-size: 24px; font-weight: bold;">e-pozyczki.pl</div>
+                        <div class="footer-content-left-info">
+                            ul. Borowska 99<br>
+                            55-090 Wrocław
+                        </div>
+                        <div class="footer-content-left-info">
+                            NIP: 899-789-090<br>
+                            KRS: 000897890
+                        </div>
+                        <div class="footer-content-left-info" style="color: #ffffff;">
+                            +48 801 801 809<br>
+                            <a href="mailto:info@e-pozyczki.pl">info@e-pozyczki.pl</a>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div id="footer-content-right">
+                        <div id="footer-content-right-standards-text">nasze standardy</div>
+                        <div id="footer-content-right-standards-logos">
+                            <div class="standardy-logos-split" style="float: left;">
+                                <img src="{{ asset('images/standardy/rzetelnafirma.jpg') }}">
+                                <img src="{{ asset('images/standardy/giodo.jpg') }}">
+                            </div>
+                            <div class="standardy-logos-split" style="float: left;">
+                                <img src="{{ asset('images/standardy/norton.jpg') }}">
+                                <img src="{{ asset('images/standardy/ssl.jpg') }}">
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                    <div id="footer-content-line"></div>
+                    <div id="footer-content-footer">
+                        <div id="footer-content-footer-copyrights">Copyright © <a href="#">e-pozyczki.pl</a> 2015. All rights reserved.</div>
+                        <div id="footer-content-footer-middle"><div id="footer-content-footer-middle-up"></div></div>
+                        <div id="footer-content-footer-designedBy">Realizacja: <a href="#">okinet.pl</a></div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>

@@ -1,0 +1,233 @@
+{% extends "::base.html.twig" %}
+{% block body %}
+    <div class="section">
+        <div class="container">
+            <div class="header">Kreator pożyczki</div>
+            <div class="header-description">Wypełnij formularz - <span>to zajmie tylko 5 minut</span></div>
+            <div class="section-content">
+                <div class="section-content-steps" id="get-loan-steps">
+                    <div class="section-content-steps-column" onClick="location.href = '{{ url('app_frontend_credit_firstStep') }}'">
+                        <div class="section-content-steps-column-content">
+                            <div class="section-content-steps-column-content-circle-background"><div class="section-content-steps-column-content-circle-number">1</div></div>
+                            <div class="section-content-steps-column-content-text">Określ potrzeby</div>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                    <div class="section-content-steps-column" onClick="location.href = '{{ url('app_frontend_credit_secondStep') }}'">
+                        <div class="section-content-steps-column-content">
+                            <div class="section-content-steps-column-content-circle-background"><div class="section-content-steps-column-content-circle-number">2</div></div>
+                            <div class="section-content-steps-column-content-text">Podaj szczegóły</div>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                    <div class="section-content-steps-column" onClick="location.href = '{{ url('app_frontend_credit_thirdStep') }}'">
+                        <div class="section-content-steps-column-content">
+                            <div class="section-content-steps-column-content-circle-background"><div class="section-content-steps-column-content-circle-number">3</div></div>
+                            <div class="section-content-steps-column-content-text">Twoje dane</div>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                    <div class="section-content-steps-column active" onClick="location.href = '{{ url('app_frontend_credit_fourthStep') }}'">
+                        <div class="section-content-steps-column-content">
+                            <div class="section-content-steps-column-content-circle-background"><div class="section-content-steps-column-content-circle-number">4</div></div>
+                            <div class="section-content-steps-column-content-text">Wyślij wniosek</div>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <div class="clear"></div>
+                <div class="section-content-wrapper" id="get-loan-creator-step-4">
+                    {{ form_start(form) }}
+                    {{ form_widget(form) }}
+                    <div class="section-content-wrapper-biggerBox">
+                        <div class="section-content-wrapper-top">
+                            <div class="section-content-wrapper-top-header">Symulacja pożyczki:</div>
+                            <a href="{{ url('app_frontend_credit_firstStep') }}"><div class="btn-edit">popraw</div></a>
+                            <div class="clear"></div>
+                        </div>
+                        <div class="summation">
+                            <div class="summation-row">
+                                <div class="summation-row-label">Kwota pożyczki:</div>
+                                <div class="summation-row-description">{{ creator.intCreditAmount }} PLN</div>
+                            </div>
+                            <div class="summation-row">
+                                <div class="summation-row-label">Okres spłaty:</div>
+                                <div class="summation-row-description">{{ creator.intRepaymentTime }} mc</div>
+                            </div>
+                            <div class="summation-row">
+                                <div class="summation-row-label">Typ spłaty:</div>
+                                <div class="summation-row-description">{{ creator.intRepaymentMethodLabel }}</div>
+                            </div>
+                            <div class="summation-row">
+                                <div class="summation-row-label">Cel pożyczki:</div>
+                                <div class="summation-row-description">{{ creator.strPurpose }}</div>
+                            </div>
+                            <div class="summation-row">
+                                <div class="summation-row-label">Opis celu pożyczki:</div>
+                                <div class="summation-row-description">{{ creator.strPurposeDescription }}</div>
+                            </div>
+                            <div class="summation-row">
+                                <div class="summation-row-label">Typ zabezpieczenia:</div>
+                                <div class="summation-row-description">{{ creator.strTypeOfSecurity }}</div>
+                            </div>
+                            <div class="summation-row">
+                                <div class="summation-row-label">Opis zabezpieczenia:</div>
+                                <div class="summation-row-description">{{ creator.strTypeOfSecurityDescription }}</div>
+                            </div><div class="summation-row">
+                                <div class="summation-row-label">Dodano pliki:</div>
+                                <div class="summation-row-description">
+                                    {% for file in creator.files %}
+                                        {{ file.filename }}<br>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                    {% if not app.user %}
+                        <div class="section-content-wrapper-smallerBox">
+                            <div class="section-content-wrapper-top">
+                                <div class="section-content-wrapper-top-header">Twoje konto:</div>
+                                <a href="{{ url('app_frontend_credit_thirdStep') }}"><div class="btn-edit">popraw</div></a>
+                                <div class="clear"></div>
+                            </div>
+                            <div class="summation">
+                                <div class="summation-row">
+                                    <div class="summation-row-label">nick:</div>
+                                    <div class="summation-row-description">{{ creator.username }}</div>
+                                </div>
+                                <div class="summation-row">
+                                    <div class="summation-row-label">e-mail:</div>
+                                    <div class="summation-row-description">{{ creator.email }}</div>
+                                </div>
+                                <div class="summation-row">
+                                    <div class="summation-row-label">hasło:</div>
+                                    <div class="summation-row-description">{{ creator.passwordHidden }}</div>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                        </div>
+                    {% endif %}
+                    <div class="clear"></div>
+                    <div class="section-content-wrapper-biggerBox">
+                        <div class="section-content-wrapper-top">
+                            <div class="section-content-wrapper-top-header">Sytyuacja pożyczkobiorcy:</div>
+                            <a href="{{ url('app_frontend_credit_secondStep') }}"><div class="btn-edit">popraw</div></a>
+                            <div class="clear"></div>
+                        </div>
+                        <div class="summation">
+                            <div class="summation-row">
+                                <div class="summation-row-label">Źródło przychodów:</div>
+                                <div class="summation-row-description">{{ creator.intSourceOfIncomeLabel }}</div>
+                            </div>
+                            <div class="summation-row">
+                                <div class="summation-row-label">Dochody miesięczne netto:</div>
+                                <div class="summation-row-description">{{ creator.intSalary }} zł</div>
+                            </div>
+                            <div class="summation-row">
+                                <div class="summation-row-label">Stan cywilny:</div>
+                                <div class="summation-row-description">{{ creator.intMaritalStatusLabel }}</div>
+                            </div>
+                            <div class="summation-row">
+                                <div class="summation-row-label">Ilość dzieci:</div>
+                                <div class="summation-row-description">{{ creator.intNumberOfChildrenLabel }}</div>
+                            </div>                                            
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                    <div class="section-content-wrapper-biggerBox">
+                        <div class="section-content-wrapper-top">
+                            <div class="section-content-wrapper-top-header">Twoje dane:</div>
+                            <a href="{{ url('app_frontend_credit_thirdStep') }}"><div class="btn-edit">popraw</div></a>
+                            <div class="clear"></div>
+                        </div>
+                        <div class="summation">
+                            <div class="summation-row">
+                                <div class="summation-row-label green">{{ creator.intTypeOfPersonLabel }}</div>
+                                <div class="summation-row-description"></div>
+                            </div>
+                            <div class="summation-row">
+                                <div class="summation-row-label">Imiona i nazwiska:</div>
+                                <div class="summation-row-description">{{ creator.strFirstName }} {{ creator.strSecondName }} {{ creator.strLastName }}</div>
+                            </div>
+                            <div class="summation-row">
+                                <div class="summation-row-label">PESEL:</div>
+                                <div class="summation-row-description">{{ creator.strPesel }}</div>
+                            </div>
+                            <div class="summation-row">
+                                <div class="summation-row-label">Nr dowodu osobistego:</div>
+                                <div class="summation-row-description">{{ creator.strIdNumber }}</div>
+                            </div>
+                            <div class="summation-row">
+                                <div class="summation-row-label">Adres zamieszkania:</div>
+                                <div class="summation-row-description">{{ creator.strAddress }}</div>
+                            </div>
+                            <div class="summation-row">
+                                <div class="summation-row-label">Kod pocztowy:</div>
+                                <div class="summation-row-description">{{ creator.strPostCode }}</div>
+                            </div>
+                            <div class="summation-row">
+                                <div class="summation-row-label">Miejscowość:</div>
+                                <div class="summation-row-description">{{ creator.strCity }}</div>
+                            </div>
+                            <div class="summation-row">
+                                <div class="summation-row-label">Telefon</div>
+                                <div class="summation-row-description">{{ creator.strPhone }}</div>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="section-additional-info">
+                        <div class="header small">PO WYSŁANIU TWÓJ WNIOSEK ZOSTANIE WYSŁANY DO POŻYCZKODAWCÓW</div>
+                        <div class="header-description">Zostaniesz poinformowany o ofertach dla Ciebie. <span>Będziesz mógł wybrać najkorzystniejszą ofertę.</span></div>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="buttons-wrapper">
+                        <div class="buttons-wrapper-button left">
+                            <a href="{{ url('app_frontend_credit_thirdStep') }}"><div class="whiteButton">Wstecz</div></a>
+                        </div>
+                        <div class="buttons-wrapper-button right">
+                            <input type="submit" class="darkButton" value="Wyślij wniosek">
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="push"></div>
+{% endblock %}
+{% block javascripts %}
+    <script type="text/javascript">
+        function generate(text, type) {
+            var n = noty({
+                text: text,
+                type: type,
+                dismissQueue: true,
+                layout: 'topLeft',
+                closeWith: ['click'],
+                theme: 'relax',
+                maxVisible: 10,
+                animation: {
+                    open: 'animated bounceInLeft',
+                    close: 'animated bounceOutLeft',
+                    easing: 'swing',
+                    speed: 500
+                }
+            });
+            console.log('html: ' + n.options.id);
+        }
+        function generateAll() {
+        {% for error in creator.errors %}
+                    generate('<div class="activity-item"> <i class="fa fa-exclamation-triangle text-danger"></i> <div class="activity"> {{ error }} </div> </div>', 'error');
+        {% endfor %}
+                }
+                $(document).ready(function() {
+                    generateAll();
+                });
+    </script>
+{% endblock %}

@@ -1,0 +1,58 @@
+<div class="section">
+    <div class="container">
+        <div class="header medium">SZCZEGÓŁY WNIOSKU POŻYCZKI <span>ID {{ credit.references }}</span></div>
+        <div class="section-content">
+            <div class="section-content-steps" id="application-steps">
+                <div data-btn="1" class="section-content-steps-column btn-toggle">
+                    <div class="section-content-steps-column-content">
+                        <div class="section-content-steps-column-content-text">Status wniosku</div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+                <div data-btn="2" class="section-content-steps-column btn-toggle active">
+                    <div class="section-content-steps-column-content">
+                        <div class="section-content-steps-column-content-text">Szczegóły wniosku</div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+                <div data-btn="3" class="section-content-steps-column btn-toggle">
+                    <div class="section-content-steps-column-content">
+                        <div class="section-content-steps-column-content-text">Oferty pożyczkodawców</div>
+                        <div class="section-content-steps-column-content-circle-background"><div class="section-content-steps-column-content-circle-number">{{ credit.offers | length }}</div></div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+                <div data-btn="4" class="section-content-steps-column btn-toggle">
+                    <div class="section-content-steps-column-content">
+                        <div class="section-content-steps-column-content-text">Pytania</div>
+                        <div class="section-content-steps-column-content-circle-background"><div class="section-content-steps-column-content-circle-number">{{ credit.messages.count }}</div></div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="clear"></div>
+            <div class="section-content-wrapper" id="content-toggle">
+                <div class="content-toggle" id="content-toggle-1" >{{ include('AppFrontendBundle:Borrower:creditInfo_first.html.twig') }}</div>
+                <div class="content-toggle" id="content-toggle-2" >{{ include('AppFrontendBundle:Borrower:creditInfo_second.html.twig') }}</div>
+                <div class="content-toggle" id="content-toggle-3" >{{ include('AppFrontendBundle:Borrower:creditInfo_third.html.twig') }}</div>
+                <div class="content-toggle" id="content-toggle-4" >{{ include('AppFrontendBundle:Borrower:creditInfo_fourth.html.twig') }}</div>
+                <div class="clear"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(function() {
+        $('#content-toggle-1').hide();
+        $('#content-toggle-2').show();
+        $('#content-toggle-3').hide();
+        $('#content-toggle-4').hide();
+        $('.btn-toggle').click(function(){
+            $('.content-toggle').hide();
+            $('#content-toggle-'+$(this).data('btn')).show();
+            $('.btn-toggle').removeClass('active');
+            $(this).addClass('active');
+        });
+    });
+</script>

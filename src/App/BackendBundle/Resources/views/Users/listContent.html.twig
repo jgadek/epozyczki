@@ -1,0 +1,26 @@
+<div class="section-content">
+    <div class="table">
+        <div class="table-header">
+            <div class="table-header-item">ID użytkownika</div>
+            <div class="table-header-item">Nazwa użytkownika</div>
+            <div class="table-header-item">Aktywny</div>
+            <div class="table-header-item">Akcja</div>
+            <div class="clear"></div>
+        </div>
+        {% for user in browser.results %}
+        <div class="table-content-row">
+            <div class="table-content-item id">{{ user.id }}</div>
+            <div class="table-content-item">{{ user.username }}</div>
+            <div class="table-content-item"></div>
+            <div class="table-content-item"></div>
+            <div class="table-content-item">{{ user.enabled ? 'Tak' : 'Nie' }}</div>
+            <div class="table-content-item">
+                <a href="">Pokaż szczegóły</a>
+            </div>
+            <div class="clear"></div>
+        </div>
+        {% endfor %}
+        <div class="clear"></div>
+    </div>
+</div>
+{{ include('AcmeGlobalBundle:Base:pagination.html.twig') }}

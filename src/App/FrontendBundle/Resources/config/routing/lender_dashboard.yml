@@ -1,0 +1,59 @@
+app_frontend_lender_dashboard_index:
+    path:     /{page}/{order}/{dir}/{fields}
+    defaults: { _controller: AppFrontendBundle:LenderDashboard:index, page: 1, order: created_at, dir: DESC, fields: ''  }
+    requirements:
+        page:  \d+
+        order: (created_at|references)
+        dir:  (ASC|DESC)
+    methods:  [GET, POST]
+        
+app_frontend_lender_dashboard_credit_info:
+    path:     /informacje-o-wniosku/{id}
+    defaults: { _controller: AppFrontendBundle:LenderDashboard:creditInfo  }
+    requirements:
+        id:  \d+
+    methods:  [POST]
+    condition: "request.isXmlHttpRequest()"
+        
+app_frontend_lender_dashboard_preferences:
+    path:     /twoje-preferencje
+    defaults: { _controller: AppFrontendBundle:LenderDashboard:preferences }
+    methods:  [GET, POST]
+    
+app_frontend_lender_dashboard_account:
+    path:     /twoje-konto
+    defaults: { _controller: AppFrontendBundle:LenderDashboard:account }
+    methods:  [GET, POST]
+    
+app_frontend_lender_dashboard_offerCredit:
+    path:     /zloz-oferte-pozyczki/{id}
+    defaults: { _controller: AppFrontendBundle:LenderDashboard:offerCredit  }
+    requirements:
+        id:  \d+
+    methods:  [GET]
+    condition: "request.isXmlHttpRequest()"
+    
+app_frontend_lender_dashboard_offerFormValid:
+    path:     /zloz-oferte-pozyczki-validacja/{id}
+    defaults: { _controller: AppFrontendBundle:LenderDashboard:formOfferValidAjax  }
+    requirements:
+        id:  \d+
+    methods:  [POST]
+    condition: "request.isXmlHttpRequest()"
+    
+app_frontend_lender_dashboard_offerCreditCreate:
+    path:     /stworz-oferte-pozyczki/{id}
+    defaults: { _controller: AppFrontendBundle:LenderDashboard:offerCreditCreate  }
+    requirements:
+        id:  \d+
+    methods:  [POST]
+    condition: "request.isXmlHttpRequest()"
+    
+app_frontend_lender_dashboard_sendMessage:
+    path:     /wyslij-pytanie/{id}
+    defaults: { _controller: AppFrontendBundle:LenderDashboard:sendMessage  }
+    requirements:
+        id:  \d+
+    methods:  [POST]
+    condition: "request.isXmlHttpRequest()"
+    

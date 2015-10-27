@@ -1,0 +1,225 @@
+<div style="margin-top: 40px;" class="section-content-wrapper relative">
+    {{ form_start(form) }}
+    <div class="section-content-wrapper-fullBox">
+        <div class="section-content-wrapper-top">
+            <div class="section-content-wrapper-top-header">Formularz oferty pożyczki:</div>
+            <div class="clear"></div>
+        </div>
+        <div class="section-content-wrapper-equalBox">
+            <div class="section-content-wrapper-top">
+                <div class="section-content-wrapper-top-header with-margin">Kwota pożyczki:</div>
+                <div class="section-content-wrapper-top-inputBox">
+                    <div class="section-content-wrapper-top-inputBox-input"><input type="text" value="100000" id="amountInput"></div>
+                    <div class="section-content-wrapper-top-inputBox-label">PLN</div>
+                    <div class="clear"></div>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="sliderContainer">
+                <div id="amountSlider"></div>
+            </div>
+            <div class="section-content-wrapper-slider-labels">
+                <div class="section-content-wrapper-slider-labels-min">10 000 PLN</div>
+                <div class="section-content-wrapper-slider-labels-max">1 000 000 PLN</div>
+                <div class="clear"></div>
+            </div>
+        </div>
+        <div class="section-content-wrapper-equalBox">
+            <div class="section-content-wrapper-top">
+                <div class="section-content-wrapper-top-header with-margin">Okres spłaty:</div>
+                <div class="section-content-wrapper-top-inputBox">
+                    <div class="section-content-wrapper-top-inputBox-input"><input type="text" value="12" id="periodInput"></div>
+                    <div class="section-content-wrapper-top-inputBox-label">mc</div>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="sliderContainer">
+                <div id="periodSlider"></div>
+            </div>
+            <div class="section-content-wrapper-slider-labels">
+                <div class="section-content-wrapper-slider-labels-min">1 mc</div>
+                <div class="section-content-wrapper-slider-labels-max">36 mc</div>
+                <div class="clear"></div>
+            </div>
+        </div>
+        <div class="section-content-wrapper-equalBox">
+            <div class="form">
+                <div class="form-inputBox-input marginRight">{{ form_widget(form.interest) }}</div><div class="form-inputBox-question" title="Podaj oprocentowanie pożyczki"></div>
+                <div class="form-inputBox-input marginRight">{{ form_widget(form.typeOfSecurity) }}</div><div class="form-inputBox-question" title="Podaj rodzaj zabezpieczenia"></div>
+                <div class="form-inputBox-input marginRight">{{ form_widget(form.replaymentMethod) }}</div><div class="form-inputBox-question" title="Podaj sposób zmiany pożyczki"></div>
+                <div class="form-inputBox-input marginRight">{{ form_widget(form.expiredAt) }}</div><div class="form-inputBox-question" title="Podaj datę przeterminowania oferty w formacie dd.mm.yyyy"></div>
+                <div class="clear"></div>
+            </div>
+        </div>
+        <div class="section-content-wrapper-equalBox">
+            <div class="form">   
+                <div class="form-inputBox-input marginRight">{{ form_widget(form.description) }}</div><div class="form-inputBox-question" title="Uwagi dla pożyczkodawcy"></div>
+                <div class="clear"></div>
+            </div>
+        </div>
+        <div class="clear"></div>
+        <div class="buttons-wrapper">
+            <div class="buttons-wrapper-button right">
+                <input type="submit" class="darkButton" value="Złóż ofertę">
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+    {{ form_end(form) }}
+
+    <script type="text/javascript">
+        function generate(text, type) {
+            var n = noty({
+                text: text,
+                type: type,
+                dismissQueue: true,
+                layout: 'topLeft',
+                closeWith: ['click'],
+                theme: 'relax',
+                maxVisible: 10,
+                animation: {
+                    open: 'animated bounceInLeft',
+                    close: 'animated bounceOutLeft',
+                    easing: 'swing',
+                    speed: 500
+                }
+            });
+        }
+        $(document).ready(function() {
+            $("#amountSlider").slider({
+                range: "min",
+                value: 100000,
+                min: 10000,
+                max: 1000000,
+                animate: true,
+                step: 1000,
+                slide: function(event, ui) {
+                    $("#amountInput").val(ui.value);
+                    updateSimulation();
+                }
+            });
+
+            $("#periodSlider").slider({
+                range: "min",
+                value: 12,
+                min: 1,
+                max: 36,
+                animate: true,
+                step: 1,
+                slide: function(event, ui) {
+                    $("#periodInput").val(ui.value);
+                    updateSimulation();
+                }
+            });
+
+            $("#amountInput").change(function() {
+                if ($(this).val() < 10000) {
+                    $(this).val("10000");
+                }
+                else if ($(this).val() > 1000000) {
+                    $(this).val("1000000");
+                }
+                $("#amountSlider").slider("value", $(this).val());
+
+                updateSimulation();
+            });
+
+            $("#periodInput").change(function() {
+                if ($(this).val() < 1) {
+                    $(this).val("1");
+                }
+                else if ($(this).val() > 36) {
+                    $(this).val("36");
+                }
+                $("#periodSlider").slider("value", $(this).val());
+
+                updateSimulation();
+            });
+
+            function updateSimulation() {
+                var amount = parseInt($("#amountInput").val());
+                var period = parseInt($("#periodInput").val());
+
+                var interest = amount * (0.12 * (period / 12));
+                interest = Math.round(interest * 100) / 100;
+                var commission = 0.01 * amount;
+                commission = Math.round(commission * 100) / 100;
+
+                var sum = amount + interest + commission + 1000;
+
+                $("#simulationStartAmount").text(amount + " PLN");
+                $("#simulationPeriod").text(period + " mc");
+                $("#simulationInterest").text(interest + " PLN");
+                $("#simulationCommission").text(commission + " PLN");
+                $("#simulationEndAmount").text(sum + " PLN");
+            }
+
+            $formName = '{{ form.vars.name }}';
+
+            if ($('#' + $formName + '_amount').val() != '') {
+                $("#amountInput").val($('#' + $formName + '_amount').val());
+                $("#amountSlider").slider("value", $('#' + $formName + '_amount').val());
+            }
+
+            if ($('#' + $formName + '_replaymentTime').val() != '') {
+                $("#periodInput").val($('#' + $formName + '_replaymentTime').val());
+                $("#periodSlider").slider("value", $('#' + $formName + '_replaymentTime').val());
+            }
+            updateSimulation();
+
+
+            $('form[name="' + $formName + '"]').submit(function() {
+                var amount = parseInt($("#amountInput").val());
+                var period = parseInt($("#periodInput").val());
+                $('#' + $formName + '_amount').val(amount);
+                $('#' + $formName + '_repaymentTime').val(period);
+            });
+
+
+            $('form[name="' + $formName + '"]').submit(function() {
+                $t = $(this);
+                $t.parent('div').append('<div id="loading"><div class="three-bounce"><div></div><div></div><div></div></div></div>');
+                $.ajax({
+                    url: '{{ url('app_frontend_lender_dashboard_offerFormValid', {id: credit.id}) }}',
+                    type: 'POST',
+                    data: $t.serialize(),
+                    success: function(r) {
+                        if (r.status === 'error') {
+                            alert('Wystąpiły błędy w formularzu');
+                            return false;
+                        }
+                        $.ajax({
+                            url: '{{ url('app_frontend_lender_dashboard_offerCreditCreate', {id: credit.id}) }}',
+                            type: 'POST',
+                            data: $t.serialize(),
+                            success: function(r) {
+                                if (r.status === 'success') {
+                                    generate('<div class="activity-item"> <i class="fa fa-check text-danger"></i> <div class="activity"> ' + r.message + ' </div> </div>', 'success');
+                                }
+                                else {
+                                    generate('<div class="activity-item"> <i class="fa fa-exclamation-triangle"></i> <div class="activity"> ' + r.message + ' </div> </div>', 'error');
+                                }
+                                $t.parent('div').slideUp('500', function() {
+                                    $t.parent('div').remove();
+                                });
+                            }
+                        });
+                    }
+                });
+                return false;
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('.form-inputBox-question').tooltipster({
+                animation: 'fade',
+                delay: 50,
+                theme: 'tooltipster-epozyczki',
+                trigger: 'hover'
+            });
+        });
+    </script>
+</div>

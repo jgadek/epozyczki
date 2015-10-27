@@ -1,0 +1,90 @@
+{% if browser.pages > 0 %}
+<div class="section-content">
+    <div class="table">
+        <div class="table-header">
+            <div class="table-header-item">ID wniosku</div>
+            <div class="table-header-item">Data dodania</div>
+            <div class="table-header-item">Status</div>
+            <div class="table-header-item">Pożyczkobiorca</div>
+            <div class="table-header-item">Pożyczkodawca</div>
+            <div class="table-header-item">Akcja</div>
+            <div class="clear"></div>
+        </div>
+        {% for credit in browser.results %}
+        <div data-credit-id="{{ credit.id }}" class="table-content-row">
+            <div class="table-content-item id">{{ credit.references }}</div>
+            <div class="table-content-item">{{ credit.createdAt | date('d.m.Y') }}</div>
+            <div class="table-content-item statusLabel">{{ credit.statusLabel }}</div>
+            <div class="table-content-item"><a href="{{ url('app_backend_users_list', {fields: 'id='~credit.guardUser.id }) }}">{{ credit.guardUser.username }}</a></div>
+            <div class="table-content-item">
+                {% if credit.lender %}
+                    <a href="{{ url('app_backend_users_list', {fields: 'id='~credit.lender.id }) }}">{{ credit.lender.username }}</a>
+                {% else %}
+                    brak
+                {% endif %}
+            </div>
+            <div class="table-content-item">
+                {% if credit.loan %}
+                    <a href="{{ url('app_backend_loan_list', {fields: 'id='~credit.loan.id }) }}">Przejdź do pożyczki</a><br />
+                {% endif %}
+                {% if credit.isStatusToChangeByAdmin %}
+                    {{ credit.listStatusesForActive|raw }} <br />
+                {% endif %}
+            </div>
+            <div class="clear"></div>
+        </div>
+        {% endfor %}
+        <div class="clear"></div>
+    </div>
+</div>
+{{ include('AcmeGlobalBundle:Base:pagination.html.twig') }}
+{% else %}
+<div style="font-size: 20px;" class="header">
+    Brak wyników
+</div>
+{% endif %}
+
+<script type="text/javascript">
+    $('.credit_statuses').change(function() {
+        $t = $(this);
+        $t.after('<div class="three-bounce"><div></div><div></div><div></div></div>');
+        $val = $(this).val();
+        $creditID = $(this).parent().parent().data('credit-id');
+        $.ajax({
+            url: '{{ url('app_backend_credits_setStatusAjax') }}',
+            type: 'POST',
+            data: {
+                status: $val,
+                creditID: $creditID
+            },
+            success: function(r) {
+                $t.next('div').remove();
+                $t.parent().parent().find('.statusLabel').html(r.new_status_label);
+                $t.remove();
+                if(r.status === 'success') {
+                    generateNoty('<div class="activity-item"> <i class="fa fa-check text-danger"></i> <div class="activity"> ' + r.message + ' </div> </div>', 'success');
+                }
+                
+            }
+        });
+    });
+
+    function generateNoty(text, type) {
+        var n = noty({
+            text: text,
+            type: type,
+            dismissQueue: true,
+            layout: 'topLeft',
+            closeWith: ['click'],
+            theme: 'relax',
+            maxVisible: 10,
+            animation: {
+                open: 'animated bounceInLeft',
+                close: 'animated bounceOutLeft',
+                easing: 'swing',
+                speed: 500
+            }
+        });
+    }
+
+</script>

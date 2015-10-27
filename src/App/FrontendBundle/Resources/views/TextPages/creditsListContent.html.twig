@@ -1,0 +1,37 @@
+<div class="section-content">
+    <div class="table">
+        <div class="table-header">
+            <div class="table-header-item">ID wniosku</div>
+            <div class="table-header-item">data dodania</div>
+            <div class="table-header-item">kwota pożyczki</div>
+            <div class="table-header-item">okres spłaty</div>
+            <div class="table-header-item">zabezpieczenie</div>
+            <div class="table-header-item">ilość ofert</div>
+            <div class="clear"></div>
+        </div>
+        {% for credit in browser.results %}
+            <div class="table-content-row">
+                <div class="table-content-item id">{{ credit.references }}</div>
+                <div class="table-content-item">{{ credit.createdAt | date('d.m.Y') }}</div>
+                <div class="table-content-item price">{{ credit.creditAmountLabel }} PLN</div>
+                <div class="table-content-item">{{ credit.replaymentTime }} mc</div>
+                <div class="table-content-item">{{ credit.typeOfSecurity }}</div>
+                <div class="table-content-item">{{ credit.offers | length }}</div>
+                <div class="table-content-item more">
+                    <div class="table-content-item-more">
+                        <div class="table-content-item-more-text"><a class="creditInfo" data-href="" href="javascript:void(0)">szczegóły</a></div>
+                        <div class="table-content-item-more-image"></div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+        {% endfor %}
+        <div class="clear"></div>
+        {{ include('AcmeGlobalBundle:Base:pagination.html.twig') }}
+        <div class="clear"></div>
+        {# APPLICATION INFO #}
+        <div class="" id="application-info">
+        </div>
+    </div>
+</div>

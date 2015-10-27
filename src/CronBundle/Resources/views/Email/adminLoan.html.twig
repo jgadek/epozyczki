@@ -1,0 +1,12 @@
+{% extends "::email.html.twig" %}
+
+{% block content %}
+    {% if loans|length > 0 %}
+        <p>Lista pożyczek na dzień {{ "now" |date('d.m.Y') }}</p>
+        {% for loan in loans %}
+            <p>Pożyczka o numerze {{ loan.id }}, <a href="{{ url('app_backend_loan_list', { fields: 'id='~loan.id }) }}">>> więcej szczegółów <<</a></p>
+        {% endfor %}
+    {% else %}
+        <p>Na dzień {{ "now" |date('d.m.Y') }} nie ma żadnych pożyczek</p>
+    {% endif %}
+{% endblock %}

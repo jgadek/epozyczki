@@ -1,0 +1,28 @@
+<script type="text/javascript">
+    function generateFlash(text, type) {
+        var n = noty({
+            text: text,
+            type: type,
+            dismissQueue: true,
+            layout: 'topLeft',
+            closeWith: ['click'],
+            theme: 'relax',
+            maxVisible: 10,
+            animation: {
+                open: 'animated bounceInLeft',
+                close: 'animated bounceOutLeft',
+                easing: 'swing',
+                speed: 500
+            }
+        });
+    }
+{% for success in app.session.flashbag.get('success') %}
+    generateFlash('<div class="activity-item"> <i class="fa fa-check text-danger"></i> <div class="activity"> {{ success }} </div> </div>', 'success');
+{% endfor %}
+{% for error in app.session.flashbag.get('error') %}
+    generateFlash('<div class="activity-item"> <i class="fa fa-exclamation-triangle text-danger"></i> <div class="activity"> {{ error }} </div> </div>', 'error');
+{% endfor %}
+{% for warning in app.session.flashbag.get('warning') %}
+    generateFlash('<div class="activity-item"> <i class="fa fa-exclamation-triangle text-danger"></i> <div class="activity"> {{ warning }} </div> </div>', 'warning');
+{% endfor %}
+</script>

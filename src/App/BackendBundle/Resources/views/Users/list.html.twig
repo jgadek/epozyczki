@@ -1,0 +1,20 @@
+{% extends "::admin.html.twig" %}
+{% block body %}
+<div class="section">
+    <div class="container">
+        <div class="header">Lista użytkowników</div>
+        <div id="section-loading">
+            {{ include('AcmeGlobalBundle:Form:sortForm.html.twig', {'sort_form': sort_form}) }}
+            {{ include('AcmeGlobalBundle:Form:filterForm.html.twig', {'filter_form': filter_form}) }}
+            <div class="clear"></div>
+            <div class="section-content-wrapper" id="ajax-content">
+            {{ include('AppBackendBundle:Users:listContent.html.twig') }}
+            </div>
+        </div>
+    </div>
+</div>
+<div id="push"></div>
+{% endblock %}
+{% block javascripts %}
+{{ include('AcmeGlobalBundle:Form:globalFormScripts.html.twig', {'filter_form': filter_form}) }}
+{% endblock %}

@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="1">
+                <source>Data utworzenia</source>
+                <target>Data utworzenia</target>
+            </trans-unit>
+            <trans-unit id="2">
+                <source>ID wniosku</source>
+                <target>ID wniosku</target>
+            </trans-unit>
+            <trans-unit id="3">
+                <source>Rosnąco</source>
+                <target>Rosnąco</target>
+            </trans-unit>
+            <trans-unit id="4">
+                <source>Malejąco</source>
+                <target>Malejąco</target>
+            </trans-unit>
+            <trans-unit id="5">
+                <source>ID Wniosku</source>
+                <target>ID Wniosku</target>
+            </trans-unit>
+            <trans-unit id="6">
+                <source>Wybierz status</source>
+                <target>Wybierz status</target>
+            </trans-unit>
+            <trans-unit id="7">
+                <source>Do aktywacji</source>
+                <target>Do aktywacji</target>
+            </trans-unit>
+            <trans-unit id="8">
+                <source>Weryfikacja przez administratora e-pozyczki.pl</source>
+                <target>Weryfikacja przez administratora e-pozyczki.pl</target>
+            </trans-unit>
+            <trans-unit id="9">
+                <source>Wniosek zaakceptowany przez administratora</source>
+                <target>Wniosek zaakceptowany przez administratora</target>
+            </trans-unit>
+            <trans-unit id="10">
+                <source>Oferta zaakceptowana przez pożyczkobiorce</source>
+                <target>Oferta zaakceptowana przez pożyczkobiorce</target>
+            </trans-unit>
+            <trans-unit id="11">
+                <source>Oferta zaakceptowana - pożyczka udzielona</source>
+                <target>Oferta zaakceptowana - pożyczka udzielona</target>
+            </trans-unit>
+            <trans-unit id="12">
+                <source>Odrzucona przez administratora</source>
+                <target>Odrzucona przez administratora</target>
+            </trans-unit>
+            <trans-unit id="13">
+                <source>Odrzucona przez pożyczkobiorce</source>
+                <target>Odrzucona przez pożyczkobiorce</target>
+            </trans-unit>
+            <trans-unit id="14">
+                <source>Oferta anulowana przez administratora</source>
+                <target>Oferta anulowana przez administratora</target>
+            </trans-unit>
+            <trans-unit id="15">
+                <source>Pożyczka w trakcie spłaty</source>
+                <target>Pożyczka w trakcie spłaty</target>
+            </trans-unit>
+            <trans-unit id="16">
+                <source>Pożyczka spłacona</source>
+                <target>Pożyczka spłacona</target>
+            </trans-unit>
+            <trans-unit id="17">
+                <source>Problem ze spłatą pożyczki</source>
+                <target>Problem ze spłatą pożyczki</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

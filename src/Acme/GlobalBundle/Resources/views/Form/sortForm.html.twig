@@ -1,0 +1,21 @@
+<div id="sort_form_btn">
+    <div class="header-form-toogle">Zmień kolejność sortowania <i class="fa fa-angle-double-down"></i></div>
+</div>
+<div id="sort_form_ct">
+{{ form_start(sort_form) }}
+    <div class="section-content-wrapper">
+        <div class="section-content-wrapper-equalBox">
+            <div class="form">
+                <div class="form-inputBox-input marginRight">{{ form_widget(sort_form.fields) }}</div>
+            </div>
+        </div>
+        <div class="section-content-wrapper-equalBox">
+            <div class="form">
+                <div class="form-inputBox-input marginRight">{{ form_widget(sort_form.dir) }}</div>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+{{ form_end(sort_form) }}
+</div>

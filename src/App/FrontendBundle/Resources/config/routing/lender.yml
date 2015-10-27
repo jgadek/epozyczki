@@ -1,0 +1,19 @@
+app_frontend_lender_registerFirstStep:
+    path:     /1-krok
+    defaults: { _controller: AppFrontendBundle:Lender:registerFirstStep }
+    methods:  [GET, POST]
+    
+app_frontend_lender_registerSecondStep:
+    path:     /2-krok
+    defaults: { _controller: AppFrontendBundle:Lender:registerSecondStep }
+    methods:  [GET, POST]
+    
+app_frontend_lender_registerThirdStep:
+    path:     /3-krok
+    defaults: { _controller: AppFrontendBundle:Lender:registerThirdStep }
+    methods:  [GET, POST]
+    
+app_frontend_lender_thankYou:
+    path:     /dziekujemy
+    defaults: { _controller: AppFrontendBundle:Lender:thankYou }
+    methods:  [GET]

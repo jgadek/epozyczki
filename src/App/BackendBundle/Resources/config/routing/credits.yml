@@ -1,0 +1,14 @@
+app_backend_credits_list:
+    path:     /{page}/{order}/{dir}/{fields}
+    defaults: { _controller: AppBackendBundle:Credits:list, page: 1, order: created_at, dir: DESC, fields: '' }
+    requirements:
+        page:  \d+
+        order: (created_at|references)
+        dir:  (ASC|DESC)
+    methods:  [GET, POST]
+    
+app_backend_credits_setStatusAjax:
+    path:     /zmiana-statusu-ajax
+    defaults: { _controller: AppBackendBundle:Credits:setStatusAjax }
+    methods:  [POST]
+    condition: "request.isXmlHttpRequest()"

@@ -1,0 +1,8 @@
+app_backend_users_list:
+    path:     /{page}/{order}/{dir}/{fields}
+    defaults: { _controller: AppBackendBundle:Users:list, page: 1, order: id, dir: DESC, fields: '' }
+    requirements:
+        page:  \d+
+        order: (username|id)
+        dir:  (ASC|DESC)
+    methods:  [GET, POST]

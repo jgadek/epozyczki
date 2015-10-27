@@ -1,0 +1,284 @@
+<div class="section-content-wrapper-fullBox">
+    <div class="section-content-wrapper-top">
+        <div class="section-content-wrapper-top-header">Szczegóły wniosku pożyczki: <strong>{{ credit.id }}</strong></div>
+        {% if credit.stepPreviousWaitToOffer%}
+        <div class="btn-edit">Wniosek oczekuje na zatwierdzenie przez administratora</div>
+        {% endif %}
+        {% if credit.stepWaitToOffer %}
+            {% if not credit.hasOfferFromUser(app.user) %}
+        <a class="offerCredit" href="{{ url('app_frontend_lender_dashboard_offerCredit', { id: credit.id }) }}"><div class="btn-edit">złóż ofertę pożyczki</div></a>
+            {% else %}
+        <div class="btn-edit">Złożyłeś już ofertę dla tego wniosku</div>
+            {% endif %}
+        {% endif %}
+        {% if credit.stepAfterWaitToOffer%}
+        <div class="btn-edit">Nie można już składać ofert</div>
+        {% endif %}
+
+        <div class="clear"></div>
+
+        <div class="section-content-wrapper-top" style="margin:30px 0;">
+            <div class="section-content-wrapper-top-header">Status wniosku pożyczki: <span>oczekiwanie na oferty</span></div>
+            <div class="clear"></div>
+        </div>
+
+
+        <div class="loan-status">
+            <ul>
+                <li class="{% if credit.stepNew %}active{% endif %}">
+                    <div>
+                        <span>1</span>
+                        <div>Złożenie wniosku pożyczki</div>
+                    </div>    
+                </li>
+                <li class="{% if credit.stepVerificationAdministator %}active{% endif %}">
+                    <div>
+                        <span>2</span>
+                        <div>Weryfikacja przez administratora e-pozyczki.pl</div>
+                    </div>    
+                </li>
+                <li class="{% if credit.stepWaitToOffer or credit.stepAfterWaitToOffer %}active{% endif %}">
+                    <div>
+                        <span>3</span>
+                        <div>Oczekiwanie na oferty</div>
+                    </div>    
+                </li>
+                <li class="{% if credit.stepAfterWaitToOffer%}active{% endif %}">
+                    <div>
+                        <span>4</span>
+                        <div>Pożyczka udzielona</div>
+                    </div>    
+                </li>
+            </ul>
+        </div>    
+
+
+        <div class="clear"></div>
+
+
+    </div>
+    <div class="clear"></div>
+    <div class="summation">
+        <div class="summation-row">
+            <div class="summation-row-label">Data dodania:</div>
+            <div class="summation-row-description">{{ credit.createdAt | date('d.m.Y') }}</div>
+        </div>
+        <div class="summation-row">
+            <div class="summation-row-label">Ważność wniosku:</div>
+            <div class="summation-row-description">20.08.2015 (17 dni, 16 godzin, 14 minut)</div>
+        </div>
+        <div class="summation-row">
+            <div class="summation-row-label">Kwota pożyczki:</div>
+            <div class="summation-row-description">{{ credit.creditAmountLabel(' ') }} PLN</div>
+        </div>
+        <div class="summation-row">
+            <div class="summation-row-label">Okres spłaty:</div>
+            <div class="summation-row-description">{{ credit.replaymentTime }} mc</div>
+        </div>
+        <div class="summation-row">
+            <div class="summation-row-label">Typ spłaty:</div>
+            <div class="summation-row-description">{{ credit.replaymentMethodLabel }}</div>
+        </div>
+        <div class="summation-row">
+            <div class="summation-row-label">Cel pożyczki:</div>
+            <div class="summation-row-description">{{ credit.purpose }}</div>
+        </div>
+        <div class="summation-row">
+            <div class="summation-row-label">Typ zabezpieczenia:</div>
+            <div class="summation-row-description">{{ credit.typeOfSecurity }}</div>
+        </div>
+        <div class="summation-row">
+            <div class="summation-row-label">Opis zabezpieczenia:</div>
+            <div class="summation-row-description">{{ credit.typeOfSecurityDescription }}</div>
+        </div>
+        <div class="summation-row">
+            <div class="summation-row-label">Pliki do pobrania:</div>
+            <div class="summation-row-description">
+                {% for fileToDownload in credit.filesToDownload %}
+                <a class="summation-row-description-file {{ fileToDownload.classname }}" href="{{ asset(fileToDownload.path) }}" download>{{ fileToDownload.filename }}</a>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="summation-row">        
+            <div class="summation-row-label">Zdjęcia:</div>
+            <div class="summation-row-description">
+                {% for image in credit.images %}
+                <a href="{{ asset(image.path) }}" data-toggle="lightbox"><img src="{{ asset(image.path) }}" width="100" /></a>
+                    {% endfor %}
+
+            </div>
+        </div>
+        <div style="padding:40px 0;">
+            <div class="section-content-wrapper-top">
+                <div class="section-content-wrapper-top-header">Opis sytuacji pożyczkoborcy</div>
+            </div>
+            <div class="summation-row">
+                <div class="summation-row-label">Źródło przychodów:</div>
+                <div class="summation-row-description">{{ credit.sourceOfIncomeLabel }}</div>
+            </div>
+            <div class="summation-row">
+                <div class="summation-row-label">Dochody miesięczne:</div>
+                <div class="summation-row-description">{{ credit.salaryLabel }} zł</div>
+            </div>
+            <div class="summation-row">
+                <div class="summation-row-label">Stan cywilny</div>
+                <div class="summation-row-description">{{ credit.maritalStatusLabel }}</div>
+            </div>                                                                              
+            <div class="summation-row">
+                <div class="summation-row-label">Ilość dzieci</div>
+                <div class="summation-row-description">{{ credit.numberOfChildrenLabel }}</div>
+            </div> 
+
+            <div class="clear"></div>
+        </div>    
+
+        <div class="section-content-wrapper">
+            <div class="section-content-wrapper-fullBox">
+                <div class="section-content-wrapper-top">
+                    <div class="section-content-wrapper-top-header">Pytania od zainteresowanych pożyczkodawców:</div>
+                    <div class="clear"></div>
+                </div>
+                <div class="section-questions">
+                    {% if credit.messages.count > 0 %}
+                    {% for message in credit.messages %}
+                    <div class="section-questions-question">
+                        <div class="section-questions-question-questionDate">{{ message.createdAt | date('d.m.Y H:i') }}<br />{{ message.guardUser.username }}</div>
+                        <div class="section-questions-question-questionInformations">
+                            <div class="section-questions-question-questionInformations-text">{{ message.content }}</div>
+                            <div class="section-questions-question-questionInformations-reply">
+
+                                <div class="section-questions-question-questionInformations-reply-informations-input">
+                                    <textarea disabled>{{ message.reply }}</textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    {% endfor %}
+                    {% else %}
+                    <div class="section-questions-question">
+                        Nikt jeszcze nie zadał pytania
+                    </div>
+                    {% endif %}
+                    <form class="formQuestion" method="POST" action="{{ url('app_frontend_lender_dashboard_sendMessage', {id: credit.id}) }}">
+                        <div id="section-loading" class="hide section-questions-question">
+                            <div class="section-questions-question-questionDate">{{ "now" | date('d.m.Y H:i') }}<br />{{ app.user.username }}</div>
+                            <div class="section-questions-question-questionInformations">
+                                <div class="section-questions-question-questionInformations-text">
+                                </div>
+                                <div class="section-questions-question-questionInformations-reply-informations-input">
+                                    <textarea name="content"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="section-questions-question-questionInformations-reply-button">
+                            <div class="btn-edit btnCreateQuestion">Zadaj pytanie</div>
+                            <input type="submit" class="hide btn-edit" value="Wyślij pytanie" />
+                        </div>
+                    </form>
+                    <div class="clear"></div>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="clear"></div>
+        </div>
+
+    </div>
+</div>
+<div class="clear"></div>
+<script type="text/javascript">
+    $(function() {
+        function generate(text, type) {
+            var n = noty({
+                text: text,
+                type: type,
+                dismissQueue: true,
+                layout: 'topLeft',
+                closeWith: ['click'],
+                theme: 'relax',
+                maxVisible: 10,
+                animation: {
+                    open: 'animated bounceInLeft',
+                    close: 'animated bounceOutLeft',
+                    easing: 'swing',
+                    speed: 500
+                }
+            });
+        }
+
+
+
+        $('.offerCredit').click(function() {
+            $href = $(this).attr('href');
+            $t = $(this);
+            $t.find('div').html('Proszę czekać ...');
+            $.ajax({
+                url: $href,
+                type: 'GET',
+                success: function(r) {
+                    $html = $(r);
+                    $html.hide();
+                    $t.next('div').after($html);
+                    $html.slideDown('500');
+                    $t.remove();
+                }
+            });
+
+            return false;
+        });
+
+        $('.btnCreateQuestion').click(function() {
+            $t = $(this);
+            $t.parent().prev('div').removeClass('hide');
+            $t.next('input').removeClass('hide');
+            $t.addClass('hide');
+        });
+
+        $('.formQuestion').submit(function() {
+            $t = $(this);
+            $t.find('textarea').css('border-color', '#dddddd');
+            if ($t.find('textarea').val() === '') {
+                $t.find('textarea').css('border-color', 'red');
+                return false;
+            }
+            $url = $t.attr('action');
+            ajaxStart($t.children('div'));
+            $t.find('input').remove();
+            $.ajax({
+                url: $url,
+                type: 'POST',
+                data: $t.serialize(),
+                success: function(r) {
+                    ajaxStop($t.children('div'));
+                    if (r.status === 'success') {
+                        $t.find('div.section-questions-question-questionInformations-text').html($t.find('textarea').val());
+                        $t.find('textarea').val('');
+                        $t.find('textarea').attr('disabled', 'true');
+                        generate('<div class="activity-item"> <i class="fa fa-check text-danger"></i> <div class="activity"> ' + r.message + ' </div> </div>', 'success');
+                    } else {
+                        generate('<div class="activity-item"> <i class="fa fa-exclamation-triangle text-danger"></i> <div class="activity"> ' + r.message + ' </div> </div>', 'success');
+                    }
+                }
+            });
+            return false;
+
+        });
+
+
+
+        function ajaxStart($div)
+        {
+            $loadingDiv = $('<div id="loading"><div class="three-bounce"><div></div><div></div><div></div></div></div>');
+            $loadingDiv.hide();
+            $div.prepend($loadingDiv);
+            $div.find('#loading').fadeIn('500');
+        }
+
+        function ajaxStop($div)
+        {
+            $div.find('#loading').fadeOut('500', function() {
+                $(this).remove();
+            });
+        }
+    });
+</script>

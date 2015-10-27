@@ -1,0 +1,29 @@
+app_frontend_text_pages_about:
+    path:     /o-nas
+    defaults: { _controller: AppFrontendBundle:TextPages:about }
+    methods:  [GET]
+    
+app_frontend_text_pages_contact:
+    path:     /kontakt
+    defaults: { _controller: AppFrontendBundle:TextPages:contact }
+    methods:  [GET]
+    
+app_frontend_text_pages_regulations:
+    path:     /regulamin
+    defaults: { _controller: AppFrontendBundle:TextPages:regulations }
+    methods:  [GET]
+    
+app_frontend_text_pages_more_about_security:
+    path:     /wiecej-o-bezpieczenstwie
+    defaults: { _controller: AppFrontendBundle:TextPages:moreAboutSecurity }
+    methods:  [GET]
+    
+app_frontend_text_pages_credits_list:
+    path:     /ostatnie-pozyczki/{page}/{order}/{dir}/{fields}
+    defaults: { _controller: AppFrontendBundle:TextPages:creditsList, page: 1, order: created_at, dir: DESC, fields: ''  }
+    requirements:
+        page:  \d+
+        order: (created_at|references)
+        dir:  (ASC|DESC)
+    methods:  [GET, POST]
+    

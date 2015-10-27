@@ -1,0 +1,106 @@
+<div class="section-content-wrapper-fullBox">
+    <div class="section-content-wrapper-top">
+        <div class="section-content-wrapper-top-header">Pytania od zainteresowanych pożyczkodawców:</div>
+        <div class="clear"></div>
+    </div>
+    <div class="section-questions">
+        {% if credit.messages.count > 0 %}
+        {% for message in credit.messages %}
+        <div id="section-loading" class="section-questions-question">
+            <form class="messageReply" action="{{ url('app_frontend_borrower_sendReply', { id: message.id }) }}">
+                <div class="section-questions-question-questionDate">{{ message.createdAt | date('d.m.Y H:i') }}<br />{{ message.guardUser.username }}</div>
+                <div class="section-questions-question-questionInformations">
+                    <div class="section-questions-question-questionInformations-text">{{ message.content }}</div>
+                    <div class="section-questions-question-questionInformations-reply">
+                    {% if message.hasStatusSend %}
+                        <div class="section-questions-question-questionInformations-reply-informations-input">
+                            <textarea name="content"></textarea>
+                        </div>
+                        <div class="section-questions-question-questionInformations-reply-button">
+                            <input type="submit" value="odpowiedz" class="btn-edit" />
+                        </div>
+                    {% else %}
+                        <div class="section-questions-question-questionInformations-reply-informations-input">
+                            <textarea disabled>{{ message.reply }}</textarea>
+                        </div>
+                    {% endif %}
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </form>
+        </div>
+        {% endfor %}
+        {% else %}
+        <div class="section-questions-question">
+            Brak wiadomości
+        </div>
+        {% endif %}
+        <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+<script type="text/javascript">
+    $(function() {
+
+        function generate(text, type) {
+            var n = noty({
+                text: text,
+                type: type,
+                dismissQueue: true,
+                layout: 'topLeft',
+                closeWith: ['click'],
+                theme: 'relax',
+                maxVisible: 10,
+                animation: {
+                    open: 'animated bounceInLeft',
+                    close: 'animated bounceOutLeft',
+                    easing: 'swing',
+                    speed: 500
+                }
+            });
+        }
+
+        $('.messageReply').submit(function() {
+            $t = $(this);
+            $t.find('textarea').css('border-color', '#dddddd');
+            if ($t.find('textarea').val() === '') {
+                $t.find('textarea').css('border-color', 'red');
+                return false;
+            }
+            ajaxStart($t.parent());
+            $url = $t.attr('action');
+            $t.find('input').remove();
+            $.ajax({
+                url: $url,
+                type: 'POST',
+                data: $t.serialize(),
+                success: function(r) {
+                    ajaxStop($t.parent());
+                    if (r.status === 'success') {
+                        $t.find('textarea').attr('disabled', 'true');
+                        generate('<div class="activity-item"> <i class="fa fa-check text-danger"></i> <div class="activity"> ' + r.message + ' </div> </div>', 'success');
+                    } else {
+                        generate('<div class="activity-item"> <i class="fa fa-exclamation-triangle text-danger"></i> <div class="activity"> ' + r.message + ' </div> </div>', 'success');
+                    }
+                }
+            });
+            return false;
+
+        });
+        
+        function ajaxStart($div)
+        {
+            $loadingDiv = $('<div id="loading"><div class="three-bounce"><div></div><div></div><div></div></div></div>');
+            $loadingDiv.hide();
+            $div.prepend($loadingDiv);
+            $div.find('#loading').fadeIn('500');
+        }
+
+        function ajaxStop($div)
+        {
+            $div.find('#loading').fadeOut('500', function() {
+                $(this).remove();
+            });
+        }
+    });
+</script>

@@ -1,0 +1,4 @@
+services:
+#    acme_global.example:
+#        class: Acme\GlobalBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]

@@ -1,0 +1,23 @@
+app_frontend_main:
+    resource: "@AppFrontendBundle/Resources/config/routing/main.yml"
+    prefix:   /
+
+app_frontend_credit:
+    resource: "@AppFrontendBundle/Resources/config/routing/credit.yml"
+    prefix:   /kreator-pozyczki/
+    
+app_frontend_borrower:
+    resource: "@AppFrontendBundle/Resources/config/routing/borrower.yml"
+    prefix:   /pozyczkobiorca/
+    
+app_frontend_lender:
+    resource: "@AppFrontendBundle/Resources/config/routing/lender.yml"
+    prefix:   /rejestracja/
+    
+app_frontend_lender_dashboard:
+    resource: "@AppFrontendBundle/Resources/config/routing/lender_dashboard.yml"
+    prefix:   /panel-pozyczkodawcy/
+    
+app_frontend_text_pages:
+    resource: "@AppFrontendBundle/Resources/config/routing/text_pages.yml"
+    prefix:   /

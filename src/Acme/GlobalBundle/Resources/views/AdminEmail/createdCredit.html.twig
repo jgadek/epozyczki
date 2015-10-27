@@ -1,0 +1,5 @@
+{% extends "::email.html.twig" %}
+
+{% block content %}
+    <p>Dla użytkownika {{ user.firstName }} został utworzony kredyt o identyfikatorze {{ credit.references }}</p>
+{% endblock %}

@@ -1,0 +1,9 @@
+{% extends "::email.html.twig" %}
+
+{% block content %}
+    <p>Został utworzony nowy użytkownik:</p>
+    <p>Rola: {{ user.typeOfUser }}</p>
+    <p>Identyfikator: {{ user.id }}</p>
+    <p>Imię: {{ user.firstName }}</p>
+    <p>Nazwisko: {{ user.lastName }}</p>
+{% endblock %}

@@ -1,0 +1,7 @@
+acme_global_email_registerConfirm:
+    path:     /register-confirm/{token}
+    defaults: { _controller: AcmeGlobalBundle:Email:registerConfirm }
+    
+test_email:
+    path:     /test
+    defaults: { _controller: AcmeGlobalBundle:Email:testEmail }

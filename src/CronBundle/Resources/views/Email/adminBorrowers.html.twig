@@ -1,0 +1,12 @@
+{% extends "::email.html.twig" %}
+
+{% block content %}
+    {% if users|length > 0 %}
+        <p>Lista nowych pożyczkobiorców {{ "now" |date('d.m.Y') }}</p>
+        {% for user in users %}
+            <p>Pożyczkobiorca {{ user.username }}, <a href="{{ url('app_backend_users_list', { fields: 'id='~user.id }) }}">>> więcej szczegółów <<</a></p>
+        {% endfor %}
+    {% else %}
+        <p>Na dzień {{ "now" |date('d.m.Y') }} nie ma żadnych nowych pożyczkobiorców</p>
+    {% endif %}
+{% endblock %}

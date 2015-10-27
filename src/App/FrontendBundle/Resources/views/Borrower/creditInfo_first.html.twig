@@ -1,0 +1,36 @@
+<div class="section-content-wrapper-fullBox">
+    <div class="section-content-wrapper-top">
+        <div class="section-content-wrapper-top-header">Status wniosku pożyczki: <span>oczekiwanie na oferty</span></div>
+        <div class="clear"></div>
+    </div>
+
+    <div class="loan-status">
+            <ul>
+                <li class="{% if credit.stepNew %}active{% endif %}">
+                    <div>
+                        <span>1</span>
+                        <div>Złożenie wniosku pożyczki</div>
+                    </div>    
+                </li>
+                <li class="{% if credit.stepVerificationAdministator %}active{% endif %}">
+                    <div>
+                        <span>2</span>
+                        <div>Weryfikacja przez administratora e-pozyczki.pl</div>
+                    </div>    
+                </li>
+                <li class="{% if credit.stepWaitToOffer%}active{% endif %}">
+                    <div>
+                        <span>3</span>
+                        <div>Oczekiwanie na oferty</div>
+                    </div>    
+                </li>
+                <li class="">
+                    <div>
+                        <span>4</span>
+                        <div>Pożyczka udzielona</div>
+                    </div>    
+                </li>
+            </ul>
+        </div> 
+    
+</div>

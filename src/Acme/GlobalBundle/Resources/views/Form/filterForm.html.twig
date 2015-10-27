@@ -1,0 +1,41 @@
+<div id="filter_form_btn">
+    <div class="header-form-toogle">Pokaż filty <i class="fa fa-angle-double-down"></i></div>
+</div>
+<div id="filter_form_ct">
+{{ form_start(filter_form) }}
+    <div class="section-content-wrapper">
+    {% for key in browser.filterForm.availableFields|keys %}
+        <div class="section-content-wrapper-equalBox">
+            <div class="form">
+                <div class="form-inputBox-input marginRight">{{ form_widget(attribute(filter_form, key)) }}</div>
+            {% set info = browser.filterForm.infoField(key) %}
+            {% if info %}
+                <div class="form-inputBox-question" title="{{ info }}"></div>
+            {% endif %}
+            </div>
+        </div>
+    {% endfor %}
+        <div class="clear"></div>
+        <div class="buttons-wrapper">
+            <div class="buttons-wrapper-button left">
+                <a href="javascript:void(0)"><div id="reset_fiter" class="whiteButton">Zresetuj filtr</div></a>
+            </div>
+            <div class="buttons-wrapper-button right">
+                <input type="submit" class="darkButton" value="Filtruj" />
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+</div>
+<div class="clear"></div>
+{{ form_end(filter_form) }}
+<script>
+    $(document).ready(function() {
+        $('.form-inputBox-question').tooltipster({
+            animation: 'fade',
+            delay: 50,
+            theme: 'tooltipster-epozyczki',
+            trigger: 'hover'
+        });
+    });
+</script>

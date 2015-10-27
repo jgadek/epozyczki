@@ -1,0 +1,45 @@
+app_backend:
+    resource: "@AppBackendBundle/Resources/config/routing.yml"
+    prefix:   /admin
+
+acme_global:
+    resource: "@AcmeGlobalBundle/Resources/config/routing.yml"
+    prefix:   /
+
+app_frontend:
+    resource: "@AppFrontendBundle/Resources/config/routing.yml"
+    prefix:   /
+
+app_guard:
+    resource: "@AppGuardBundle/Resources/config/routing.yml"
+    prefix:   /
+
+app_api:
+    resource: "@AppApiBundle/Resources/config/routing.yml"
+    prefix:   /api
+
+#fos_user:
+#    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+fos_user_security_login:
+    path:     /logowanie
+    defaults: { _controller: FOSUserBundle:Security:login }
+    methods:  [GET, POST]
+
+fos_user_security_check:
+    path:     /login_check
+    defaults: { _controller: FOSUserBundle:Security:check }
+    methods:  [POST]
+
+fos_user_security_logout:
+    path:     /wyloguj
+    defaults: { _controller: FOSUserBundle:Security:logout }
+    methods:  [GET]
+    
+fos_user_group:
+    resource: "@FOSUserBundle/Resources/config/routing/group.xml"
+    prefix: /group
+    
+NelmioApiDocBundle:
+    resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
+    prefix:   /doc/api

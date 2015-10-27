@@ -1,0 +1,19 @@
+app_backend_main:
+    resource: "@AppBackendBundle/Resources/config/routing/main.yml"
+    prefix:   /
+
+app_backend_users:
+    resource: "@AppBackendBundle/Resources/config/routing/users.yml"
+    prefix:   /uzytkownicy/
+
+app_backend_credits:
+    resource: "@AppBackendBundle/Resources/config/routing/credits.yml"
+    prefix:   /wnioski/
+
+app_backend_loan:
+    resource: "@AppBackendBundle/Resources/config/routing/loan.yml"
+    prefix:   /pozyczki/
+
+app_backend_offers:
+    resource: "@AppBackendBundle/Resources/config/routing/offers.yml"
+    prefix:   /oferty/

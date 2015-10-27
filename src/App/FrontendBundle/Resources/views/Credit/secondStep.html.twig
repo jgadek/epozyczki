@@ -1,0 +1,130 @@
+{% extends "::base.html.twig" %}
+{% block body %}
+
+<div class="section">
+    <div class="container">
+        {{ form_start(form) }}
+        <div class="header">Kreator pożyczki</div>
+        <div class="header-description">Wypełnij formularz - <span>to zajmie tylko 5 minut</span></div>
+        <div class="section-content">
+            <div class="section-content-steps" id="get-loan-steps">
+                <div class="section-content-steps-column" onClick="location.href = '{{ url('app_frontend_credit_firstStep') }}'">
+                    <div class="section-content-steps-column-content">
+                        <div class="section-content-steps-column-content-circle-background"><div class="section-content-steps-column-content-circle-number">1</div></div>
+                        <div class="section-content-steps-column-content-text">Określ potrzeby</div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+                <div class="section-content-steps-column active" onClick="location.href = '{{ url('app_frontend_credit_secondStep') }}'">
+                    <div class="section-content-steps-column-content">
+                        <div class="section-content-steps-column-content-circle-background"><div class="section-content-steps-column-content-circle-number">2</div></div>
+                        <div class="section-content-steps-column-content-text">Podaj szczegóły</div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+                <div class="section-content-steps-column" onClick="location.href = '{{ url('app_frontend_credit_thirdStep') }}'">
+                    <div class="section-content-steps-column-content">
+                        <div class="section-content-steps-column-content-circle-background"><div class="section-content-steps-column-content-circle-number">3</div></div>
+                        <div class="section-content-steps-column-content-text">Twoje dane</div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+                <div class="section-content-steps-column" onClick="location.href = '{{ url('app_frontend_credit_fourthStep') }}'">
+                    <div class="section-content-steps-column-content">
+                        <div class="section-content-steps-column-content-circle-background"><div class="section-content-steps-column-content-circle-number">4</div></div>
+                        <div class="section-content-steps-column-content-text">Wyślij wniosek</div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="clear"></div>
+            <div class="section-content-wrapper" id="get-loan-creator">
+                <div class="section-content-wrapper-equalBox">
+                    <div class="section-content-wrapper-top">
+                        <div class="section-content-wrapper-top-header">Podaj szczegóły pożyczki:<span>*</span></div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="form">
+                        <div class="form-inputBox-input marginRight">{{ form_widget(form.strPurpose) }}</div><div class="form-inputBox-question" title="Wpisz cel pożyczki"></div>
+                        <div class="form-inputBox-input marginRight">{{ form_widget(form.strPurposeDescription) }}</div><div class="form-inputBox-question" title="Opisz szczegółowo cel pożyczki"></div>
+                        <div class="form-inputBox-input marginRight">
+                            {{ form_widget(form.intRepaymentMethod) }}
+                        </div><div class="form-inputBox-question" title="Wybierz sposób spłaty pożyczki"></div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+                <div class="section-content-wrapper-equalBox">
+                    <div class="section-content-wrapper-top">
+                        <div class="section-content-wrapper-top-header">Opis sytuacji pożyczkobiorcy:</div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="form">
+                        <div class="form-inputBox-input marginRight">
+                            {{ form_widget(form.intSourceOfIncome) }}
+                        </div><div class="form-inputBox-question" title="Wybierz ilość przychodów"></div>
+                        <div class="form-inputBox-input marginRight pln">{{ form_widget(form.intSalary) }}</div><div class="form-inputBox-question" title="Wpisz swoje dochody miesięczne"></div>
+                        <div class="form-inputBox-input marginRight">
+                            {{ form_widget(form.intMaritalStatus) }}
+                        </div><div class="form-inputBox-question" title="Wybierz swój stan cywilny"></div>
+                        <div class="form-inputBox-input marginRight">
+                            {{ form_widget(form.intNumberOfChildren) }}
+                        </div><div class="form-inputBox-question" title="Wybierz ilość dzieci"></div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+                <div class="clear"></div>
+                <div class="section-content-wrapper-equalBox">
+                    <div class="section-content-wrapper-top">
+                        <div class="section-content-wrapper-top-header">Podaj szczegóły zabezpieczenia pożyczki:<span>*</span></div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="form">
+                        <div class="form-inputBox-input marginRight">{{ form_widget(form.strTypeOfSecurity) }}</div><div class="form-inputBox-question" title="Wybierz rodzaj zabezpieczenia"></div>
+                        <div class="form-inputBox-input marginRight">{{ form_widget(form.strTypeOfSecurityDescription) }}</div><div class="form-inputBox-question" title="Opisz szczegółowo zabezpieczenia pożyczki"></div>
+                        <div class="form-inputBox-input marginRight file">{{ form_widget(form.filesName) }}</div><div class="form-inputBox-question" title="Dodaj dodatkowe dokumenty do wniosku"></div>
+                        {{ form_widget(form.files) }}
+                        <div class="clear"></div>
+                    </div>
+                </div>
+                <div class="clear"></div>
+                <div class="buttons-wrapper">
+                    <div class="buttons-wrapper-button left">
+                        <a href="{{ url('app_frontend_credit_firstStep') }}"><div class="whiteButton">Wstecz</div></a>
+                    </div>
+                    <div class="buttons-wrapper-button right">
+                        <input type="submit" class="darkButton" value="Dalej">
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+        </div>
+        {{ form_end(form) }}
+    </div>
+</div>
+
+<div id="push"></div>
+{% endblock %}
+{% block javascripts %}
+
+<script>
+    $(document).ready(function() {
+        $('.form-inputBox-question').tooltipster({
+            animation: 'fade',
+            delay: 50,
+            theme: 'tooltipster-epozyczki',
+            trigger: 'hover'
+        });
+        $(".selectedFiles").click(function() {
+            $(".selectFiles").click();
+        });
+        $("input[type=file]").change(function(e) {
+            var fileNames = '';
+            for (var i = 0; i < e.target.files.length; i++) {
+                fileNames += e.target.files[0].name + ', ';
+            }
+            $(".selectedFiles").val(fileNames);
+        });
+    });
+</script>
+{% endblock %}

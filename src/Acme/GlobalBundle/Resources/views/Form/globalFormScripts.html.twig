@@ -1,0 +1,127 @@
+<script type="text/javascript">
+    $(function() {
+        $('#filter_form_ct').hide();
+        $('#filter_form_btn').click(function(){
+            $(this).slideUp('500');
+            $('#filter_form_ct').slideDown('500');
+        });
+        
+        $('#sort_form_ct').hide();
+        $('#sort_form_btn').click(function(){
+            $(this).slideUp('500');
+            $('#sort_form_ct').slideDown('500');
+        });
+        
+        var page = '{{ browser.page }}';
+        var order = '{{ browser.order }}';
+        var dir = '{{ browser.dir }}';
+        var activeRoute = '{{ app.request.get('_route') }}';
+        var fields = '{{ browser.fields }}';
+        var sortFormName = '{{ sort_form.vars.name }}'
+
+        $('form[name="' + sortFormName + '"]').change(function() {
+            ajaxStart();
+            $('#sort_form_btn').slideDown('500');
+            $('#sort_form_ct').slideUp('500');
+            order = $(this).find('#' + sortFormName + '_fields').val();
+            dir = $(this).find('#' + sortFormName + '_dir').val();
+            page = 1;
+            reload();
+        });
+
+        var filterFormName = '{{ filter_form.vars.name }}';
+        var arrKeysFilter = [];
+        {% for key in browser.filterForm.availableFields|keys %}
+        key = '{{ key }}';
+        arrKeysFilter.push(key);
+        {% endfor %}
+
+        $('form[name="' + filterFormName + '"]').submit(function() {
+            $('#filter_form_btn').slideDown('500');
+            $('#filter_form_ct').slideUp('500');
+            ajaxStart();
+            $t = $(this);
+            $.ajax({
+                url: '{{ url('acme_global_formValidAjax', {form_class: browser.filterForm.className }) }}',
+                type: 'POST',
+                data: $t.serialize(),
+                success: function(r) {
+                    if (r.status === 'error') {
+                        alert('Wystąpiły błędy w formularzu');
+                        ajaxStop();
+                        return false;
+                    }
+                    fields = '';
+                    arrValues = [];
+                    $.each(arrKeysFilter, function(index, value) {
+                        $field = $('form[name="' + filterFormName + '"]').find('#' + filterFormName + '_' + value);
+                        if ($field.val() !== '') {
+                            arrValues.push(value + '=' + $field.val());
+                        }
+                    });
+                    fields = arrValues.join('&');
+                    page = 1;
+                    reload();
+                }
+            });
+
+            return false;
+        });
+
+        $('form[name="' + filterFormName + '"] #reset_fiter').click(function() {
+            $('form[name="' + filterFormName + '"]').find('input[type!="submit"]').each(function() {
+                if ($(this).attr('type') !== 'hidden') {
+                    $(this).val('');
+                }
+            });
+            $('#filter_form_btn').slideDown('500');
+            $('#filter_form_ct').slideUp('500');
+            ajaxStart();
+            fields = '';
+            page = 1;
+            reload();
+        });
+
+        function ajaxStart()
+        {
+            $loadingDiv = $('<div id="loading"><div class="three-bounce"><div></div><div></div><div></div></div></div>');
+            $loadingDiv.hide();
+            $('#section-loading').prepend($loadingDiv);
+            $('#section-loading').find('#loading').fadeIn('500');
+        }
+
+        function ajaxStop()
+        {
+            $('#section-loading').find('#loading').fadeOut('500', function() {
+                $(this).remove();
+            });
+        }
+
+        function reload()
+        {
+            $.ajax({
+                url: '{{ url('acme_global_generateUrlAjaxForBrowser') }}',
+                type: 'POST',
+                data: {
+                    page: page,
+                    order: order,
+                    dir: dir,
+                    fields: fields,
+                    route: activeRoute
+                },
+                success: function(r) {
+                    var newUrl = r.url;
+                    $.ajax({
+                        url: r.url,
+                        type: 'POST',
+                        success: function(r) {
+                            $('#ajax-content').html(r);
+                            window.history.pushState({}, '', newUrl);
+                            ajaxStop();
+                        }
+                    });
+                }
+            });
+        }
+    });
+</script>

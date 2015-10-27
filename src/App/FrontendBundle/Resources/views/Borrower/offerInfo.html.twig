@@ -1,0 +1,85 @@
+<div class="section-content-wrapper-fullBox">
+    <div class="section-content-wrapper-top">
+        <div class="section-content-wrapper-top-header">Szczegóły oferty pożyczki:</div>
+        <div class="clear"></div>
+    </div>
+    <div class="equalBox">
+        <div class="summation">
+            <div class="summation-row medium">
+                <div class="summation-row-label">ID Oferty:</div>
+                <div class="summation-row-description">{{ offer.references }}</div>
+            </div>
+            <div class="summation-row medium">
+                <div class="summation-row-label">Data wpłynięcia oferty:</div>
+                <div class="summation-row-description">{{ offer.createdAt | date('d.m.Y H:i') }}</div>
+            </div>
+            <div class="summation-row medium">
+                <div class="summation-row-label">Nazwa oferenta:</div>
+                <div class="summation-row-description">{{ offer.lender.username }}</div>
+            </div>
+            <div class="summation-row medium">
+                <div class="summation-row-label">Oferowana kwota:</div>
+                <div class="summation-row-description">{{ offer.amountOfferedLabel(' ') }} PLN</div>
+            </div>
+            <div class="summation-row medium">
+                <div class="summation-row-label">Odsetki:</div>
+                <div class="summation-row-description">{{ offer.interest }}%</div>
+            </div>
+            <div class="summation-row medium">
+                <div class="summation-row-label">Okres spłaty:</div>
+                <div class="summation-row-description">{{ offer.replaymentTime }} mc</div>
+            </div>
+            <div class="summation-row medium">
+                <div class="summation-row-label">Typ spłaty:</div>
+                <div class="summation-row-description">{{ offer.replaymentMethod }}</div>
+            </div>
+            <div class="summation-row medium">
+                <div class="summation-row-label">Uwagi</div>
+                <div class="summation-row-description">{{ offer.description }}</div>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+    <div class="equalBox">
+        <div class="summation">
+            <div class="summation-row medium">
+                <div class="summation-row-label">Kapitał do spłaty:</div>
+                <div class="summation-row-description">{{ offer.amountOfferedLabel(' ') }} PLN</div>
+            </div>
+            <div class="summation-row medium">
+                <div class="summation-row-label">Oprocentowanie:</div>
+                <div class="summation-row-description">{{ offer.interest }}%</div>
+            </div>
+            <div class="summation-row medium">
+                <div class="summation-row-label">Prowizja e-pozyczki.pl:</div>
+                <div class="summation-row-description">{{ offer.commission }}%</div>
+            </div>
+            <div class="summation-row medium">
+                <div class="summation-row-label">Wycena zabezpieczenia:</div>
+                <div class="summation-row-description">{{ offer.securityPriceLabel(' ') }} PLN</div>
+            </div>
+            <div class="summation-row medium">
+                <div class="summation-row-label">Ubezpieczenie transakcji:</div>
+                <div class="summation-row-description">{{ offer.insuranceTransactionsLabel(' ') }} PLN</div>
+            </div>
+            <div class="summation-row medium">
+                <div class="summation-row-label">Koszty notarialne:</div>
+                <div class="summation-row-description">{{ offer.notaryCostsLabel(' ') }} PLN</div>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+    <div class="clear"></div>
+</div>
+<div class="clear"></div>
+{% if offer.credit.stepWaitToOffer %}
+<div class="buttons-wrapper">
+    <div class="buttons-wrapper-button">
+        <a href="{{ url('app_frontend_borrower_offerCancel', { id: offer.id }) }}"><div class="btn-cancel big">odrzuć ofertę</div></a>
+    </div>
+    <div class="buttons-wrapper-button">
+        <a href="{{ url('app_frontend_borrower_offerAccept', { id: offer.id }) }}"><div class="btn-edit big">zaakceptuj ofertę</div></a>
+    </div>
+    <div class="clear"></div>
+</div>
+{% endif %}

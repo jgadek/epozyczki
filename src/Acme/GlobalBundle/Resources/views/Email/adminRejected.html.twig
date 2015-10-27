@@ -1,0 +1,7 @@
+{% extends "::email.html.twig" %}
+
+{% block content %}
+    <p>Witamy {{ user.firstName }},</p>
+    <p>Zgłoszony wniosek nr {{ credit.references }} został odrzucony przez administratora.</p>
+    <p>Więcej szczegółów znajdziesz pod linkiem: <a style="color:#2BDE73;" href="{{ url('app_frontend_borrower_myApplications', { fields: 'references='~credit.references }) }}">{{ url('app_frontend_borrower_myApplications', { fields: 'references='~credit.references }) }}</a></p>
+{% endblock %}

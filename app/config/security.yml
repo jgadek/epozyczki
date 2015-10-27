@@ -1,0 +1,36 @@
+# app/config/security.yml
+security:
+    encoders:
+        FOS\UserBundle\Model\UserInterface: sha512
+
+    role_hierarchy:
+        ROLE_ADMIN:       ROLE_USER
+        ROLE_SUPER_ADMIN: ROLE_ADMIN
+
+    providers:
+        fos_userbundle:
+            id: my_custom.user_provider.email
+#            BY USERNAME: id: fos_user.user_provider.username
+#            BY USERNAME OR EMAIL: id: fos_user.user_provider.username_email
+
+    firewalls:
+        main:
+            pattern: ^/
+            form_login:
+                login_path: /logowanie
+                provider: fos_userbundle
+                csrf_provider: security.csrf.token_manager # Use form.csrf_provider instead for Symfony <2.4
+                default_target_path: /after-login
+            logout:
+                path:   /wyloguj
+                target: /
+            anonymous:    true
+            
+    access_control:
+        - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin, role: ROLE_ADMIN }
+        - { path: ^/group/, role: ROLE_ADMIN }
+        - { path: ^/pozyczkobiorca/, role: ROLE_BORROWER }
+        - { path: ^/panel-pozyczkodawcy, role: ROLE_LENDER }

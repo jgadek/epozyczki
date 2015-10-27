@@ -1,0 +1,57 @@
+{% extends "::base.html.twig" %}
+{% block body %}
+<div class="section">
+    <div class="container">
+
+        <div class="section-content-steps" id="get-loan-steps">
+            <div class="section-content-steps-column active">
+                <div class="section-content-steps-column-content" onClick="location.href = '{{ url('app_frontend_lender_dashboard_index') }}'">
+                    <div class="section-content-steps-column-content-text">Wnioski o pożyczkę</div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+            <div class="section-content-steps-column" onClick="location.href = '{{ url('app_frontend_lender_dashboard_preferences') }}'">
+                <div class="section-content-steps-column-content">
+                    <div class="section-content-steps-column-content-text">Twoje preferencje</div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+            <div class="section-content-steps-column" onClick="location.href = '{{ url('app_frontend_lender_dashboard_account') }}'">
+                <div class="section-content-steps-column-content">
+                    <div class="section-content-steps-column-content-text">Twoje konto</div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+
+        <div class="clear"></div>
+        <div id="section-loading">
+            {{ include('AcmeGlobalBundle:Form:sortForm.html.twig', {'sort_form': sort_form}) }}
+            {{ include('AcmeGlobalBundle:Form:filterForm.html.twig', {'filter_form': filter_form}) }}
+            <div class="clear"></div>
+            <div class="section-content-wrapper" id="ajax-content">
+                {{ include('AppFrontendBundle:LenderDashboard:indexContent.html.twig') }}
+            </div>
+        </div>
+
+    </div>
+</div>
+<div id="push"></div>
+{% endblock %}
+{% block javascripts %}
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('.section-content-rangeWrapper-box-question').tooltipster({
+            animation: 'fade',
+            delay: 50,
+            theme: 'tooltipster-epozyczki',
+            trigger: 'hover'
+        });
+    });
+
+
+
+</script>
+{{ include('AcmeGlobalBundle:Form:globalFormScripts.html.twig', {'filter_form': filter_form}) }}
+{% endblock %}

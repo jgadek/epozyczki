@@ -1,0 +1,497 @@
+{% extends "::base.html.twig" %}
+{% block body %}
+<div id="big-banner">
+    <div class="container">
+        <div id="big-banner-header">Jak to działa?</div>
+        <div id="big-banner-play"></div>
+    </div>
+</div>
+<div class="section">
+    <div class="container">
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <div class="header">Kreator pożyczki</div>
+        <div class="header-description">Wypełnij formularz - <span>to zajmie tylko 5 minut</span></div>
+        <div class="section-content">
+            <div class="section-content-steps" id="get-loan-steps">
+                <div class="section-content-steps-column active">
+                    <div class="section-content-steps-column-content">
+                        <div class="section-content-steps-column-content-circle-background"><div class="section-content-steps-column-content-circle-number">1</div></div>
+                        <div class="section-content-steps-column-content-text">Określ potrzeby</div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+                <div class="section-content-steps-column">
+                    <div class="section-content-steps-column-content">
+                        <div class="section-content-steps-column-content-circle-background"><div class="section-content-steps-column-content-circle-number">2</div></div>
+                        <div class="section-content-steps-column-content-text">Podaj szczegóły</div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+                <div class="section-content-steps-column">
+                    <div class="section-content-steps-column-content">
+                        <div class="section-content-steps-column-content-circle-background"><div class="section-content-steps-column-content-circle-number">3</div></div>
+                        <div class="section-content-steps-column-content-text">Twoje dane</div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+                <div class="section-content-steps-column">
+                    <div class="section-content-steps-column-content">
+                        <div class="section-content-steps-column-content-circle-background"><div class="section-content-steps-column-content-circle-number">4</div></div>
+                        <div class="section-content-steps-column-content-text">Wyślij wniosek</div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="clear"></div>
+            <div class="section-content-wrapper" id="get-loan-creator">
+                <div class="section-content-wrapper-equalBox">
+                    <div class="section-content-wrapper-top">
+                        <div class="section-content-wrapper-top-header with-margin">Kwota pożyczki:</div>
+                        <div class="section-content-wrapper-top-inputBox">
+                            <div class="section-content-wrapper-top-inputBox-input"><input type="text" value="100000" id="amountInput"></div>
+                            <div class="section-content-wrapper-top-inputBox-label">PLN</div>
+                            <div class="clear"></div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="sliderContainer">
+                        <div id="amountSlider"></div>
+                    </div>
+                    <div class="section-content-wrapper-slider-labels">
+                        <div class="section-content-wrapper-slider-labels-min">10 000 PLN</div>
+                        <div class="section-content-wrapper-slider-labels-max">1 000 000 PLN</div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+                <div class="section-content-wrapper-equalBox">
+                    <div class="section-content-wrapper-top">
+                        <div class="section-content-wrapper-top-header with-margin">Okres spłaty:</div>
+                        <div class="section-content-wrapper-top-inputBox">
+                            <div class="section-content-wrapper-top-inputBox-input"><input type="text" value="12" id="periodInput"></div>
+                            <div class="section-content-wrapper-top-inputBox-label">mc</div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="sliderContainer">
+                        <div id="periodSlider"></div>
+                    </div>
+                    <div class="section-content-wrapper-slider-labels">
+                        <div class="section-content-wrapper-slider-labels-min">1 mc</div>
+                        <div class="section-content-wrapper-slider-labels-max">36 mc</div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+                <div class="clear"></div>
+                <div class="section-content-wrapper-biggerBox">
+                    <div class="creator-content-biggerBox-content">
+                        <div class="section-content-wrapper-top">
+                            <div class="section-content-wrapper-top-header">Symulacja pożyczki:</div>
+                            <div class="clear"></div>
+                        </div>
+                        <div class="clear"></div>
+                        <div class="fullBox">
+                            <div class="section-content-wrapper-row">
+                                <div class="section-content-wrapper-row-label">Kapitał do spłaty:</div>
+                                <div class="section-content-wrapper-row-description" id="simulationStartAmount">50 000 PLN</div>
+                            </div>
+                            <div class="section-content-wrapper-row">
+                                <div class="section-content-wrapper-row-label">Kapitał odsetek:</div>
+                                <div class="section-content-wrapper-row-description" id="simulationInterest">8 000 PLN</div>
+                            </div>
+                            <div class="section-content-wrapper-row">
+                                <div class="section-content-wrapper-row-label">Okres spłaty:</div>
+                                <div class="section-content-wrapper-row-description" id="simulationPeriod">12 mc</div>
+                            </div>
+                            <div class="section-content-wrapper-row">
+                                <div class="section-content-wrapper-row-label">Prowizja 1%:</div>
+                                <div class="section-content-wrapper-row-description" id="simulationCommission">500 PLN</div>
+                            </div>
+                            <div class="section-content-wrapper-row">
+                                <div class="section-content-wrapper-row-label">Maksymalna % odsetek:</div>
+                                <div class="section-content-wrapper-row-description">12% rocznie</div>
+                            </div>
+                            <div class="section-content-wrapper-row">
+                                <div class="section-content-wrapper-row-label">Koszty administracyjne:</div>
+                                <div class="section-content-wrapper-row-description">1 000 PLN</div>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="section-content-wrapper-smallerBox rightAlign">
+                    <div class="section-content-wrapper-top without-bottomMargin">
+                        <div class="section-content-wrapper-top-header rightAlign">Całkowity koszt pożyczki:</div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="section-content-wrapper-smallerBox-price" id="simulationEndAmount">59 500 PLN</div>
+                    <div class="section-content-wrapper-smallerBox-button"><input type="submit" class="darkButton" value="Dalej"></div>
+                    <div class="clear"></div>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+        {{ form_end(form) }}
+    </div>
+</div>
+<div id="safety">
+    <div class="container">
+        <div class="header">Bezpieczeństwo transakcji</div>
+        <div id="safety-boxes">
+            <div class="safety-boxes-box" id="safety-box-1">
+                <div class="safety-boxes-box-image"><img src="{{ asset('images/mainOchronaAntylichwiarska.png') }}"></div>
+                <div class="safety-boxes-box-description">Ochrona<br>antylichwiarska</div>
+            </div>
+            <div class="safety-boxes-box" id="safety-box-2">
+                <div class="safety-boxes-box-image"><img src="{{ asset('images/mainOchronaPrawna.png') }}"></div>
+                <div class="safety-boxes-box-description">Ochrona<br>prawna</div>
+            </div>
+            <div class="safety-boxes-box" id="safety-box-3">
+                <div class="safety-boxes-box-image"><img src="{{ asset('images/mainUbezpieczenieTransakcji.png') }}"></div>
+                <div class="safety-boxes-box-description">Ubezpieczenie<br>transakcji</div>
+            </div>
+            <div class="safety-boxes-box" id="safety-box-4">
+                <div class="safety-boxes-box-image"><img src="{{ asset('images/mainUmowaNotarialna.png') }}"></div>
+                <div class="safety-boxes-box-description">Umowa<br>notarialna</div>
+            </div>
+            <div class="safety-boxes-box" style="border: none;" id="safety-box-5">
+                <div class="safety-boxes-box-image"><img src="{{ asset('images/mainMonitoringIObslugaTransakcji.png') }}"></div>
+                <div class="safety-boxes-box-description">MONITORING I<br>OBSŁUGA TRANSAKCJI</div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div id="safety-button"><a href="{{ url('app_frontend_text_pages_more_about_security') }}"><div class="lightButton darkBackground">Więcej o bezpieczeństwie</div></a></div>
+    </div>
+</div>
+<div class="section">
+    <div class="container">
+        <div class="header">Ostatnio dodane wnioski o pożyczki</div>
+        <div class="section-content" id="headerOstatnie">
+            <div class="table" id="tableOstatnie" style="visibility: hidden;">
+                <div class="table-header">
+                    <div class="table-header-item">ID wniosku</div>
+                    <div class="table-header-item">data dodania</div>
+                    <div class="table-header-item">kwota pożyczki</div>
+                    <div class="table-header-item">okres spłaty</div>
+                    <div class="table-header-item">zabezpieczenie</div>
+                    <div class="table-header-item">ilość ofert</div>
+                    <div class="clear"></div>
+                </div>
+                {% for credit in last_credits %}
+                <div class="table-content-row">
+                    <div class="table-content-item id">{{ credit.references }}</div>
+                    <div class="table-content-item">{{ credit.createdAt | date('d.m.Y') }}</div>
+                    <div class="table-content-item price">{{ credit.creditAmountLabel }} PLN</div>
+                    <div class="table-content-item">{{ credit.replaymentTime }} mc</div>
+                    <div class="table-content-item">{{ credit.typeOfSecurity }}</div>
+                    <div class="table-content-item">{{ credit.offers | length }}</div>
+                    <div class="table-content-item more">
+                        <div class="table-content-item-more">
+                            <div class="table-content-item-more-text"><a href="#">szczegóły</a></div>
+                            <div class="table-content-item-more-image"></div>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="buttons-wrapper"><a href="{{ url('app_frontend_text_pages_credits_list') }}"><div class="buttons-wrapper-button"><div class="lightButton">Wszystkie wnioski o pożyczki</div></div></a></div>
+            <div class="line"></div>
+        </div>
+    </div>
+</div>
+<div class="section">
+    <div class="container">
+        <div class="header">Statystyki transakcji</div>
+        <div class="content" id="headerStatystyki">
+            <div class="stats-box">
+                <div class="stats-box-chart">
+                    <div class="chart" data-percent="86">
+                        <div class="percent">12%</div>
+                    </div>
+                </div>
+                <div class="stats-box-description">AKTUALNA STOPA<br>LOMBARDOWA</div>
+            </div>
+            <div class="stats-box">
+                <div class="stats-box-chart">
+                    <div class="chart" data-percent="60">
+                        <div class="percent">>42mln</div>
+                    </div>
+                </div>
+                <div class="stats-box-description">KWOTA PRZYZNANYCH<br>POŻYCZEK</div>
+            </div>
+            <div class="stats-box">
+                <div class="stats-box-chart">
+                    <div class="chart" data-percent="70">
+                        <div class="percent">789</div>
+                    </div>
+                </div>
+                <div class="stats-box-description">LICZBA UDZIELONYCH<br>POŻYCZEK</div>
+            </div>
+            <div class="stats-box">
+                <div class="stats-box-chart">
+                    <div class="chart" data-percent="77">
+                        <div class="percent">12 678</div>
+                    </div>
+                </div>
+                <div class="stats-box-description">ZAREJESTROWANYCH<br>POŻYCZKOBIORCÓW</div>
+            </div>
+            <div class="stats-box">
+                <div class="stats-box-chart">
+                    <div class="chart" data-percent="40">
+                        <div class="percent">456</div>
+                    </div>
+                </div>
+                <div class="stats-box-description">AKTYWNYCH<br>POŻYCZKODAWCÓW</div>
+            </div>
+            <div class="clear"></div>
+            <div class="line"></div>
+        </div>
+    </div>
+</div>
+<div id="about">
+    <div class="container">
+        <div class="header">Kim jesteśmy?</div>
+        <div class="section-content" id="headerAbout">
+            <div class="about-box" id="about-box-1">
+                <div class="about-box-cloud">
+                    <div class="about-box-cloud-container">
+                        <div class="about-box-cloud-container-text">Od 20 lat związany z biznesem wrocławskim. Rozwijał Europejski Fundusz Leasingowy, Współtwórca Krajowego Rejestru Długów, właściciel kancelarii prawnej VratislaviaLex.</div>
+                        <div class="about-box-cloud-container-info">
+                            <div class="about-box-cloud-container-info-name">Marek Jabłoński</div>
+                            <div class="about-box-cloud-container-info-position">Założyciel</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-box-image"><img src="{{ asset('images/photo1.png') }}"></div>
+            </div>
+            <div class="about-box"  id="about-box-2">
+                <div class="about-box-cloud">
+                    <div class="about-box-cloud-container">
+                        <div class="about-box-cloud-container-text">Od 20 lat koordynator działów obsługi klienta w takich firmach jak: Polkomtel, WOŚP. Dzisiaj swoim doświadczeniem wspiera dział obsługi klienta Loans24.pl.</div>
+                        <div class="about-box-cloud-container-info">
+                            <div class="about-box-cloud-container-info-name">ANNA DOWNAR</div>
+                            <div class="about-box-cloud-container-info-position">Kierownik Obsługi Klienta</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-box-image"><img src="{{ asset('images/photo2.png') }}"></div>
+            </div>
+            <div class="about-box last" id="about-box-3">
+                <div class="about-box-cloud">
+                    <div class="about-box-cloud-container">
+                        <div class="about-box-cloud-container-text">Inwestor i pożyczkodawca od 20 lat na rynku polskim i zagranicznym. Udzielił ponad 200 pożyczek na kwotę 20 mln zł. Biznes pożyczek zna od podszewki dzięki czemu jego pomysły skutecznie sprawdzają się w praktyce.</div>
+                        <div class="about-box-cloud-container-info">
+                            <div class="about-box-cloud-container-info-name">Roman Kowalski</div>
+                            <div class="about-box-cloud-container-info-position">Założyciel</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-box-image"><img src="{{ asset('images/photo3.png') }}"></div>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+</div>
+<div class="section" style="margin-bottom: 50px;">
+    <div class="container">
+        <div class="header">Media o nas</div>
+        <div class="section-content">
+            <div id="media-logo"><img src="{{ asset('images/logotypyMedia.jpg') }}"></div>
+            <div id="media-logo-rwd"><img src="{{ asset('images/logotypyMediaRWD.jpg') }}"></div>
+        </div>
+    </div>
+</div>
+
+<div id="push"></div>
+{% endblock %}
+{% block javascripts %}
+<script>
+    $(document).ready(function() {
+        $("#amountSlider").slider({
+            range: "min",
+            value: 100000,
+            min: 10000,
+            max: 1000000,
+            animate: true,
+            step: 1000,
+            slide: function(event, ui) {
+                $("#amountInput").val(ui.value);
+                updateSimulation();
+            }
+        });
+
+        $("#periodSlider").slider({
+            range: "min",
+            value: 12,
+            min: 1,
+            max: 36,
+            animate: true,
+            step: 1,
+            slide: function(event, ui) {
+                $("#periodInput").val(ui.value);
+                updateSimulation();
+            }
+        });
+
+        $("#amountInput").change(function() {
+            if ($(this).val() < 10000) {
+                $(this).val("10000");
+            }
+            else if ($(this).val() > 1000000) {
+                $(this).val("1000000");
+            }
+            $("#amountSlider").slider("value", $(this).val());
+
+            updateSimulation();
+        });
+
+        $("#periodInput").change(function() {
+            if ($(this).val() < 1) {
+                $(this).val("1");
+            }
+            else if ($(this).val() > 36) {
+                $(this).val("36");
+            }
+            $("#periodSlider").slider("value", $(this).val());
+
+            updateSimulation();
+        });
+
+        function updateSimulation() {
+            var amount = parseInt($("#amountInput").val());
+            var period = parseInt($("#periodInput").val());
+
+            var interest = amount * (0.12 * (period / 12));
+            interest = Math.round(interest * 100) / 100;
+            var commission = 0.01 * amount;
+            commission = Math.round(commission * 100) / 100;
+
+            var sum = amount + interest + commission + 1000;
+
+            $("#simulationStartAmount").text(amount + " PLN");
+            $("#simulationPeriod").text(period + " mc");
+            $("#simulationInterest").text(interest + " PLN");
+            $("#simulationCommission").text(commission + " PLN");
+            $("#simulationEndAmount").text(sum + " PLN");
+        }
+
+
+        $(window).scroll(function() {
+            if ($(window).scrollTop() + $(window).height() > $('#safety-boxes').offset().top) {
+                updateSafety(1);
+            }
+            if ($(window).scrollTop() + $(window).height() > $('#headerOstatnie').offset().top) {
+                setTimeout(function() {
+                    $("#tableOstatnie").css("visibility", "visible");
+                    $("#tableOstatnie").addClass('animated fadeIn');
+                }, 300);
+            }
+            if ($(window).scrollTop() + $(window).height() > $('#headerStatystyki').offset().top) {
+                setTimeout(function() {
+                    $('.chart').easyPieChart({
+                        barColor: '#2bde73',
+                        trackColor: '#95efb9',
+                        scaleColor: false,
+                        lineWidth: 8,
+                        size: 140,
+                        animate: 2000
+                    });
+                }, 100);
+            }
+            if ($(window).scrollTop() + $(window).height() > $('#headerAbout').offset().top) {
+                updateAbout(1);
+            }
+        });
+
+        function updateSafety(safety_scroll_number) {
+            var div = "#safety-box-" + safety_scroll_number;
+            if (safety_scroll_number == 1) {
+                setTimeout(function() {
+                    $(div).css("visibility", "visible");
+                    $(div).addClass('animated bounceIn');
+                    var newNum = safety_scroll_number + 1;
+                    updateSafety(newNum);
+                }, 300);
+            }
+            else if (safety_scroll_number <= 5) {
+                setTimeout(function() {
+                    $(div).css("visibility", "visible");
+                    $(div).addClass('animated bounceIn');
+                    var newNum = safety_scroll_number + 1;
+                    updateSafety(newNum);
+                }, 300);
+            }
+        }
+
+        function updateAbout(about_scroll_number) {
+            var div = "#about-box-" + about_scroll_number;
+            if (about_scroll_number == 1) {
+                setTimeout(function() {
+                    $(div).css("visibility", "visible");
+                    $(div).addClass('animated zoomIn');
+                    var newNum = about_scroll_number + 1;
+                    updateAbout(newNum);
+                }, 300);
+            }
+            else if (about_scroll_number <= 3) {
+                setTimeout(function() {
+                    $(div).css("visibility", "visible");
+                    $(div).addClass('animated zoomIn');
+                    var newNum = about_scroll_number + 1;
+                    updateAbout(newNum);
+                }, 200);
+            }
+        }
+
+        if ($(window).scrollTop() + $(window).height() > $('#safety-boxes').offset().top) {
+            updateSafety(1);
+        }
+        if ($(window).scrollTop() + $(window).height() > $('#headerOstatnie').offset().top) {
+            setTimeout(function() {
+                $("#tableOstatnie").css("visibility", "visible");
+                $("#tableOstatnie").addClass('animated zoomIn');
+            }, 300);
+        }
+        if ($(window).scrollTop() + $(window).height() > $('#headerStatystyki').offset().top) {
+            setTimeout(function() {
+                $('.chart').easyPieChart({
+                    barColor: '#2bde73',
+                    trackColor: '#95efb9',
+                    scaleColor: false,
+                    lineWidth: 8,
+                    size: 140,
+                    animate: 2000
+                });
+            }, 100);
+        }
+        if ($(window).scrollTop() + $(window).height() > $('#headerAbout').offset().top) {
+            updateAbout(1);
+        }
+        
+        $formName = '{{ form.vars.name }}';
+        
+        if($('#'+$formName+'_intCreditAmount').val() != '') {
+            $("#amountInput").val($('#'+$formName+'_intCreditAmount').val());
+            $("#amountSlider").slider("value", $('#'+$formName+'_intCreditAmount').val());
+        }
+        
+        if($('#'+$formName+'_intRepaymentTime').val() != '') {
+            $("#periodInput").val($('#'+$formName+'_intRepaymentTime').val());
+            $("#periodSlider").slider("value", $('#'+$formName+'_intRepaymentTime').val());
+        }
+        
+        updateSimulation();
+        
+        $('form[name="'+$formName+'"]').submit(function(){
+            var amount = parseInt($("#amountInput").val());
+            var period = parseInt($("#periodInput").val());
+            $('#'+$formName+'_intCreditAmount').val(amount);
+            $('#'+$formName+'_intRepaymentTime').val(period);
+        });
+    });
+</script>
+{% endblock %}
+

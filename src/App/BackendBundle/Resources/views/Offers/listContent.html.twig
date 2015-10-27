@@ -1,0 +1,24 @@
+<div class="section-content">
+    <div class="table">
+        <div class="table-header">
+            <div class="table-header-item">ID oferty</div>
+            <div class="table-header-item">Wniosek</div>
+            <div class="table-header-item">Status</div>
+            <div class="table-header-item">Akcja</div>
+            <div class="clear"></div>
+        </div>
+        {% for offer in browser.results %}
+        <div class="table-content-row">
+            <div class="table-content-item id">{{ offer.references }}</div>
+            <div class="table-content-item">{{ offer.credit.id }}</div>
+            <div class="table-content-item">{{ offer.status }}</div>
+            <div class="table-content-item">
+                <a href="">Pokaż szczegóły</a>
+            </div>
+            <div class="clear"></div>
+        </div>
+        {% endfor %}
+        <div class="clear"></div>
+    </div>
+</div>
+{{ include('AcmeGlobalBundle:Base:pagination.html.twig') }}

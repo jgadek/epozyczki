@@ -1,0 +1,57 @@
+<div class="section-content-wrapper-fullBox">
+    <div class="section-content-wrapper-top">
+        <div class="section-content-wrapper-top-header">Oferty pożyczkodawców:</div>
+        <div class="clear"></div>
+    </div>
+    <div class="offers">
+        <div class="table">
+            <div class="table-header">
+                <div class="table-header-item">data dodania</div>
+                <div class="table-header-item">pożyczkodawca</div>
+                <div class="table-header-item">kwota pożyczki</div>
+                <div class="table-header-item">oprocentowanie</div>
+                <div class="table-header-item">czas spłaty</div>
+                <div class="clear"></div>
+            </div>
+            {% for offer in credit.offers %}
+            <div class="table-content-row">
+                <div class="table-content-item">{{ offer.createdAt | date('d.m.Y') }}</div>
+                <div class="table-content-item">{{ offer.lender.username }}</div>
+                <div class="table-content-item price">{{ offer.amountOffered }} PLN</div>
+                <div class="table-content-item">{{ offer.interest }}%</div>
+                <div class="table-content-item">{{ offer.replaymentTime }} mc</div>
+                <div class="table-content-item more">
+                    <div class="table-content-item-more">
+                        <div class="table-content-item-more-text"><a class="offerInfoBtn" href="{{ url('app_frontend_borrower_offerInfo', { id: offer.id }) }}">szczegóły</a></div>
+                        <div class="table-content-item-more-image"></div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<div id="offer-info"></div>
+<script type="text/javascript">
+    $(function() {
+        $('.offerInfoBtn').click(function() {
+            $(this).closest('.table').find('.table-content-row').removeClass('active');
+            $(this).closest('.table-content-row').addClass('active');
+            $t = $(this);
+            $('#offer-info').html('<div class="three-bounce"><div></div><div></div><div></div></div>');
+            $.ajax({
+                url: $t.attr('href'),
+                type: 'POST',
+                success: function(r) {
+                    $html = $(r);
+                    $html.hide();
+                    $('#offer-info').html($html);
+                    $html.slideDown(400);
+                }
+            });
+            return false;
+        });
+    });
+</script>
